@@ -1,0 +1,9 @@
+Ci dessous le code a mettre dans votre page pour appeler la carte.
+Modifier la variable $mapChemin, et mettre le chemin relatif à votre document, qui pointe vers le dossier de la carte.
+
+<?php
+$mapChemin = 'map/france_map_3.0/'; // Chemin du dossier FranceMap relatif au ficher dans lequel vous faites l'include
+		
+$urlExec = $_SERVER['PHP_SELF'];
+include($mapChemin.'map.php');
+?>

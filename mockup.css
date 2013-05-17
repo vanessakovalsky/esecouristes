@@ -1,0 +1,56 @@
+/*===== CSS theme file for CalendarXP 9.0 (Totally configurable) =====*/
+/* NOTE: Better use numbered color values instead of literal ones, because opera has problem with the latter in certain cases. */
+
+/* Calendar Day Header - the cells showing "Sunday", "Monday" .... */
+.CalHead {cursor:default; text-align:center; font:bold 9pt verdana; color:#000099; border:1px solid white;}
+/* Day Column Cell - the TD cell of each day */
+.CalCol {}
+/* Day Cell - the DIV cell inside TD */
+.CalCell {cursor:hand; text-align:right; background:#000099 no-repeat; display:table; }
+/* Day Number - the Anchor inside DIV showing the day number  */
+.CellAnchor {text-decoration:none; font:bold 9pt verdana; display:table-row; }
+
+/* WeekNo Header - the top header cell of the week number column */
+.WeekHead {cursor:default; font:10pt arial black; text-align:center; border:1px solid white; color:#000099;}
+/* WeekNo Column Cell - the cells of the week number column */
+.WeekCol {cursor:default; text-align:center; border:1px solid white;}
+/* WeekNo Anchor style */
+.WeekAnchor {text-decoration:none; font:bold 9pt sans-serif; color:#000099;}
+
+/* Month navigators - the "<" or ">" used to move to previous or next month */
+.MonthNav {vertical-align:middle; font:14pt "Monotype Corsiva"; color:#000099; text-decoration:none;}
+A.MonthNav:hover {color:orange}
+A.MonthNav:active {color:red}
+
+/* styles for the 3 calendar sections (actually 3 table TDs) */
+.CalTop {text-align:center; border:2px solid white; }
+.CalMiddle {}
+.CalBottom {text-align:center;}
+
+/* Calendar title - showing year and month. when giDCStyle=0, it's the style of the year/month dropdowns; giDCStyle>0, it's the style to show gsCalTitle.  */
+.CalTitle {vertical-align:middle; font:18pt "Monotype Corsiva"; cursor:default; color:#000099;}
+
+/* The style of internal floating div/layer tags, which are usually used to create the artificial dropdown selectors. */
+.FreeDiv {}
+
+/* The style of the outer TABLE tag which is the outer calendar panel. */
+#outerTable {border:1px ridge #000099;}
+/* The style of the inner DIV tag that holds the inner panel of all calendar cells. */
+#innerDiv {}
+/*===== Above CSS styles are commonly used in the script engine =====*/
+
+/*====== Following are additional per-theme styles, e.g. the inner dropdown selectors and today etc. You may have your own defined. ======*/
+.BottomAnchor {text-decoration:none; font:bold 10pt sans-serif; color:black; vertical-align:top;}
+A.BottomAnchor:hover {color:blue;}
+A.BottomAnchor:active {color:red;}
+
+.MsgBoard {font:7.5pt arial; cursor:hand; color:black; background-color:white; border:1px solid #000099; border-left:8px solid #000099; margin:1px; padding:2px;}
+.MsgAbsence {font:7.5pt arial; color:black; background-color:#C0C0C0; border:1px solid #4B4B4B; border-left:8px solid #4B4B4B; margin:1px; padding:2px;}
+.MsgRed {font:6.5pt arial; color:black; background-color:#FF9999; border:1px solid #CC0000; border-left:8px solid #CC0000; margin:1px; padding:2px;}
+.MsgGreen {font:6.5pt arial; color:black; background-color:#99FF99; border:1px solid #006600; border-left:8px solid #006600; margin:1px; padding:2px;}
+.MsgOrange {font:6.5pt arial; color:black; background-color:#FFCC66; border:1px solid #FF6600; border-left:8px solid #FF6600; margin:1px; padding:2px;}
+.MsgBlue {font:6.5pt arial; color:black; background-color:#B7D8FB; border:2px solid #000099; border-left:10px solid #000099; margin:1px; padding:2px;}
+.MsgPurple {font:6.5pt arial; color:black; background-color:#F5F5DC; border:2px solid #8B008B; border-left:10px solid #8B008B; margin:1px; padding:2px;}
+.MsgGold {font:6.5pt arial; color:black; background-color:#FFD700; border:2px solid #800000; border-left:10px solid #800000; margin:1px; padding:2px;}
+.MsgIvory {font:6.5pt arial; color:black; background-color:#FFF8DC; border:2px solid #8B0000; border-left:10px solid #8B0000 ; margin:1px; padding:2px;}
+

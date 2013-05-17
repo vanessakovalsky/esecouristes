@@ -1,0 +1,246 @@
+/*
+  # written by: Nicolas MARCHE <nico.marche@free.fr>
+  # project: ebrigade
+  # homepage: http://sourceforge.net/projects/ebrigade/
+  # version: 2.5
+
+  # Copyright (C) 2004, 2011 Nicolas MARCHE
+  # This program is free software; you can redistribute it and/or modify
+  # it under the terms of the GNU General Public License as published by
+  # the Free Software Foundation; either version 2 of the License, or
+  # (at your option) any later version.
+  #
+  # This program is distributed in the hope that it will be useful,
+  # but WITHOUT ANY WARRANTY; without even the implied warranty of
+  # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  # GNU General Public License for more details.
+  # You should have received a copy of the GNU General Public License
+  # along with this program; if not, write to the Free Software
+  # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+
+BODY {
+ background-color : #FFFFFF;
+ font-family: Arial;
+ font-size : 0.8em;
+ margin : 2 0 0 5;
+ color: #000099;
+}
+
+TR { font-family: Arial, Helvetica, sans-serif; font-size : 12px; }
+
+/* LIENS */
+A   { text-decoration : none; color : #003399;}
+A:HOVER  { text-decoration : underline; color : green;}
+A.s  { text-decoration : none; font-size:12px; }
+A.z   { text-decoration : none; font-size:25px; }
+A:HOVER.s { font-size:12px; text-decoration : underline; color : purple;  }
+A:HOVER.z { font-size:25px; text-decoration : underline; color : purple;  }
+
+/*MENUS VERTICAUX*/
+.TabHeader {
+ color : white;
+ font-family: Arial;
+ font-weight: bold;
+ background-color: #000099;
+}
+
+/*SEPARATIONS*/
+.charte      {  background-color: white;    }
+.dark        {  background-color: #000000; }
+.bright      {  background-color: #C6C6C6; }
+
+/*MENUS VERTICAUX*/
+.FondMenu {
+ background-color: #000099;
+ border : 1px solid #000099;
+}
+.MenuRub  {
+ background-color: #000099;
+ font-weight: bold;
+ letter-spacing : 1px;
+ padding-left : 4px;
+ color : white;
+ }
+.Menu {
+ background-color:  #B7D8FB;
+ padding : 0px 0px 0px 4px;
+ line-height : 15px;
+        text-decoration : none;
+}
+.Bottom {
+ background-color:  #000099;
+ padding-left : 4px;
+ color : white;
+ font-family: Arial;
+}
+.SousTotal{
+ color : yellow;
+ font-family: Arial;
+ font-weight: bold;
+ background-color: #000099;
+}
+.TabTotal{
+ color : orange;
+ font-family: Arial;
+ font-weight: bold;
+ background-color: #000099;
+}
+
+#result{
+ margin-top:2px;
+ margin-left:2px;
+ margin-right:2px;
+ border: 1px solid #cccccc;
+ width: 500px;
+ background: white;
+ text-align:left;
+ font-family: Arial, Helvetica, sans-serif;
+ font-size : 12px;
+ padding:2px;
+ height:400px;
+ overflow-y : scroll;
+}
+
+#users{
+ margin-top:2px;
+ margin-left:2px;
+ margin-right:2px;
+ border: 1px solid #cccccc;
+ width: 250px;
+ background: white;
+ text-align:left;
+ font-family: Arial, Helvetica, sans-serif;
+ font-size : 12px;
+ padding:2px;
+ height:400px;
+ overflow-y : scroll;
+}
+
+
+/* Pagination */
+.paginate {
+ font-family: Arial, Helvetica, sans-serif;
+ font-size: 11px;
+}
+ 
+a.paginate {
+ border: 1px solid #000080;
+ padding: 1px 6px 1px 6px;
+ text-decoration: none;
+ color: #000080;
+}
+ 
+a.paginate:hover {
+ background-color: #000080;
+ color: #FFF;
+ text-decoration: underline;
+}
+ 
+a.current {
+ border: 1px solid #000080;
+ font: bold 12px Arial,Helvetica,sans-serif;
+ padding: 1px 6px 1px 6px;
+ cursor: default;
+ background:#000080;
+ color: #FFF;
+ text-decoration: none;
+}
+ 
+span.inactive {
+ border: 1px solid #999;
+ font-family: Arial, Helvetica, sans-serif;
+ font-size: 11px;
+ padding: 1px 6px 1px 6px;
+ color: #999;
+ cursor: default;
+} 
+
+tr.rotation {
+	height : 200px;
+}
+
+th.rotation180{
+	white-space : nowrap;
+	-moz-transform: rotate(-90deg) translate(-6em,0);  /* FF3.5+ */
+	-o-transform: rotate(-90deg) translate(-6em,0);  /* Opera 10.5 */
+	-webkit-transform: rotate(-90deg) translate(-6em,0);  /* Saf3.1+, Chrome */
+	transform : rotate(-90deg) translate(-6em,0);
+}
+
+table.stats {
+	table-layout:fixed;
+	width:2000px;
+	border-collapse : collapse;
+	margin-left : 20px;
+}
+
+table.stats td, th {
+	border : 1px solid #000000;
+	text-align : center;
+}
+td.separation, th.separation {
+	border : 3px solid #000000;
+}
+
+table.stats td.separation-droite, th.separation-droite {
+	border-right : 3px solid #000000;
+}
+table.stats td.separation-gauche, th.separation-gauche {
+	border-left : 3px solid #000000;
+}
+td.separation-bas, th.separation-bas, tr.separation-bas {
+	border-bottom : 3px solid #000000;
+}
+
+table.stats td.large {
+	width : 55px;
+	float : left;
+	overflow : hidden;
+	margin-left : -10px;
+}
+td.separation-haut, th.separation-haut, tr.separation-haut {
+	border-top : 3px solid #000000;
+}
+
+.bleu-clair {
+	background : #B7D8FB;
+}
+
+h2 {
+	text-align : center;
+}
+
+#prestation {
+	border-collapse : collapse;
+}
+
+#prestation td {	
+	border : solid 1px #000099;
+}
+
+/* Formulaire pour la configuration des prestations */
+
+#form-prestation {
+	width : 60%;
+	margin : auto;
+}
+
+legend.TabHeader  {
+	padding-left : 20px;
+	font-weight : bold;
+	width : 100%;
+}
+
+#form-prestation p label {
+	float: left;
+	width: 200px;
+	padding-left : 5px;
+	text-align: left;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.submit {
+	margin : 0 35%;
+}
