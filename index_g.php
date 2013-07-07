@@ -74,7 +74,7 @@ echo "
 <TD class='FondMenu' valign='top'><TABLE BORDER='0' CELLPADDING='0' CELLSPACING='0' WIDTH=150></TD>";
 
 // ==================================
-// véhicules/matériel
+// vï¿½hicules/matï¿½riel
 // ==================================
 
 if (( $vehicules == 1 or  $materiel == 1 ) and ( check_rights($_SESSION['id'], 42) )) {
@@ -84,7 +84,7 @@ if (( $vehicules == 1 or  $materiel == 1 ) and ( check_rights($_SESSION['id'], 4
 	
 	if ( $vehicules == 1 ) {
 		echo "<TR><TD CLASS='Menu' nowrap>";
-		echo "<a href='vehicule.php' target='droite' class=s>Véhicules</a>";
+		echo "<a href='vehicule.php' target='droite' class=s>V&eacute;hicules</a>";
 		if ( check_rights($_SESSION['id'], 17) ) {
 		echo " / <a href='evenement_vehicule.php' 
 			target='droite' class=s>Engagements</a>";
@@ -93,7 +93,7 @@ if (( $vehicules == 1 or  $materiel == 1 ) and ( check_rights($_SESSION['id'], 4
 	}
 	if ( $materiel == 1 ) {
 		echo "<TR><TD CLASS='Menu' nowrap>";
-		echo "<a href='materiel.php' target='droite' class=s>Matériel</a>";
+		echo "<a href='materiel.php' target='droite' class=s>Mat&eacute;riel</a>";
 		if ( check_rights($_SESSION['id'], 17) ) {
 		echo " / <a href='evenement_materiel.php' 
 			target='droite' class=s>Engagements</a>";
@@ -122,7 +122,7 @@ echo "
  / <a href='personnel.php?category=interne&position=ancien' target='droite' class=s>Anciens</a> <BR>";
 echo "<a href='".$searchpage."' target='droite' class=s>Recherche</a>";
 if ( $gardes == 1 ) $title="Affectations";
-else $title="Compétences";
+else $title="Comp&eacute;tences";
 if ( $competences == 1 )
 echo" / <a href='qualifications.php?pompier=0' target=droite class=s>$title</a><BR>
 </TD>
@@ -158,7 +158,7 @@ echo "
 if ( $disponibilites == 1) {
 	if ( check_rights($_SESSION['id'], 38) or check_rights($_SESSION['id'], 11)) {
 	echo "
-	<TR><TD CLASS='MenuRub'>Disponibilités</TD></TR>
+	<TR><TD CLASS='MenuRub'>Disponibilit&eacutes;s</TD></TR>
 	<TR><TD class='charte'></TD></TR>
 	<TR>
 	<TD CLASS='Menu' nowrap>";
@@ -190,8 +190,8 @@ if ( $gardes == 1 ) {
 
 	echo "<a href='tableau_garde.php' target='droite' class=s>Tableau</a>";
 	if ( $vehicules == 1 ) 
-	 echo " / <a href='grille_depart.php' target='droite' class=s>Grille départ</a>";
-	echo "<BR><a href='bilan_garde.php' target='droite' class=s>Répartition</a> / 
+	 echo " / <a href='grille_depart.php' target='droite' class=s>Grille d&eacute;part</a>";
+	echo "<BR><a href='bilan_garde.php' target='droite' class=s>R&eacute;partition</a> / 
 	<a href='garde_jour.php' target='droite' class=s>Garde jour</a>
 	</TD>
 	</TR>";
@@ -211,7 +211,7 @@ if (check_rights($_SESSION['id'], 27) and ( $evenements == 1 ) and
 	   <TD CLASS='Menu'>
 	   <a href='repo_events.php' target='droite' class=s>Graphiques</a>";
 	   if ( $SES_NOM == 'admin' ) {
-		   echo " / <a href='ChartDirector/phpdemo' target='_blank' class=s>Démo</a>"; 
+		   echo " / <a href='ChartDirector/phpdemo' target='_blank' class=s>Dï¿½mo</a>"; 
 	       echo "
 	       ";
 	   }
@@ -222,7 +222,7 @@ if (check_rights($_SESSION['id'], 27) and ( $evenements == 1 ) and
     	if ( @is_dir("./france_map_3.0")){
     		echo "<TR>
    			<TD CLASS='Menu'>
-   			<a href='france_map_3.0' target='droite' class=s title='Cartes de france de membres et des activités'>
+   			<a href='france_map_3.0' target='droite' class=s title='Cartes de france de membres et des activitï¿½s'>
 			   Cartes de France</a>
    			</TD>
    			</tr>";
@@ -251,7 +251,7 @@ echo "
 if ( check_rights($_SESSION['id'], 41) or 
 	(check_rights($_SESSION['id'], 45) and $_SESSION['SES_COMPANY'] > 0))
 if ( $evenements == 1 ){	
-	echo "<a href='evenement_choice.php' target='droite' class=s>Evénements</a> / ";
+	echo "<a href='evenement_choice.php' target='droite' class=s>Ev&egrave;nements</a> / ";
 	echo "<a href='calendar.php' target='droite' class=s title='Voir mon calendrier'>Calendrier</a><BR>";
 }
 if ( check_rights($_SESSION['id'], 44) ) {
@@ -267,7 +267,7 @@ if ( check_rights($_SESSION['id'], 44) ) {
 		else $loc=$parent;
 	}
 	else $loc=$section;
-	$tit="Voir documents attachés à mon ".$niv3;
+	$tit="Voir documents attach&eacute;s &agrave; mon ".$niv3;
 	
     echo "<a href='upd_section.php?S_ID=".$loc."#documents' target=\"droite\" class=s 
 			title=\"".$tit."\">Documents</a>";
@@ -277,7 +277,7 @@ echo "</TD>
 
 
 // ==================================
-//Comptabilité
+//Comptabilitï¿½
 // ==================================
 
 echo "
@@ -301,7 +301,7 @@ echo "<TR><TD CLASS='MenuRub'>Session</TD></TR>
 <TR><TD class='charte'></TD></TR>
 <TR>
 <TD CLASS='Menu'>
-<a href='deconnexion.php' target='droite' class=s title=\"se déconnecter de l'application\">Déconnexion</a>";
+<a href='deconnexion.php' target='droite' class=s title=\"se d&eacute;connecter de l'application\">D&eacute;connexion</a>";
 if ( check_rights($_SESSION['id'], 20) ) { 
 	echo " / <a href='audit.php' target=\"droite\" class=s title=\"Voir l'historique des connexions\">Audit</a>";
 }
@@ -318,12 +318,12 @@ if ( $V > 4 ) $cnt="<div id='counter'></div>";
 else $cnt="Online";
 
 echo "<a href='chat.php' target='droite' class=s 
-	title=\"Communication par messagerie instantanée avec les autres personnes connectées\">".$cnt."</a>";
+	title=\"Communication par messagerie instantann&eacute;e avec les autres personnes connect&eacute;es\">".$cnt."</a>";
 }
 else echo "<br>";
 
 if ( @is_dir("./spgm") and check_rights($_SESSION['id'], 44) ) {
-	echo "<a href='spgm/index.php' target='droite' class=s 
+    echo "<a href='spgm/index.php' target='droite' class=s 
 	title=\"Album photos\">Album photos</a><br>";
 }
 
@@ -340,32 +340,34 @@ echo "</TD>
 </TR>";
 
 // ==================================
-// paramétrage
+// paramï¿½trage
 // ==================================
 if ($competences == 1 or $evenements == 1 or $materiel == 1)
  if ( check_rights($_SESSION['id'], 9)  or  check_rights($_SESSION['id'], 18)) {
    echo "<TR><TD class=\"charte\"></TD></TR>
-         <TR><TD CLASS=\"MenuRub\">Paramétrage</TD></TR>
+         <TR><TD CLASS=\"MenuRub\">Param&eacute;trage</TD></TR>
 	 <TR><TD class=\"charte\"></TD></TR>
 	 <TR>
 	 <TD CLASS=\"Menu\">";
    	 if ( $competences )
-	    echo "<a href='equipe.php' target=\"droite\" class=s>Types de compétences</a><BR>";
+	    echo "<a href='equipe.php' target=\"droite\" class=s>Types de comp&eacute;tences</a><BR>";
 	 if ( $competences )
-	 	echo "<a href='poste.php?order=PS_ID&filter=ALL' target=\"droite\" class=s>Compétences</a>";
+	 	echo "<a href='poste.php?order=PS_ID&filter=ALL' target=\"droite\" class=s>Comp&eacute;tences</a>";
 	 if ( $evenements ){
 	 	if ( $competences ) echo " / ";
 	 	echo "<a href='paramfn.php' target=\"droite\" class=s>Fonctions</a>";
 	 }
 	 if ( $materiel or $competences) echo "<BR>";
 	 if ( $materiel ) 
-	 	echo "<a href='type_materiel.php' target=\"droite\" class=s>Matériel</a>";
+	 	echo "<a href='type_materiel.php' target=\"droite\" class=s>Mat&eacute;riel</a>";
 	 if ( $competences ) {
 	 	if ( $materiel ) echo " / ";
-     	echo "<a href='diplome_edit.php' target=\"droite\" class=s>Diplômes</a>";
+     	echo "<a href='diplome_edit.php' target=\"droite\" class=s>Dipl&ocirc;mes</a>";
 	 }
 	 echo " / ";
 	 echo "<a href='prestation.php' target=\"droite\">Prestations</a>";
+         echo " / ";
+         echo "<a href='type_evenement.php' target=\"droite\">Type &eacute;v&egrave;nement</a>";
 	 echo "</TD></TR>";
 }
 
@@ -385,7 +387,7 @@ if (( check_rights($_SESSION['id'], 14) )
 	 if ( check_rights($_SESSION['id'], 14) )
 	 	echo "<a href='configuration.php' target=\"droite\" class=s>Configuration</a> / <a href='restore.php?file=' target=\"droite\" class=s>Backup</a><BR>";
 	 if (( check_rights($_SESSION['id'], 9) ) or ( check_rights($_SESSION['id'], 25) ))
-	 	echo "<a href='habilitations.php' target=\"droite\" class=s title='Voir les permissions pqr groupe ou par rôle'>Habilitations</a> / ";
+	 	echo "<a href='habilitations.php' target=\"droite\" class=s title='Voir les permissions pqr groupe ou par rï¿½le'>Habilitations</a> / ";
 	 	echo "<a href='change_password.php' target=\"droite\" class=s title='Modifier les mots de passe du personnel'>Passwords</a><BR>";
 	 echo "</TD>
 	 <TR><TD class='charte'></TD></TR>

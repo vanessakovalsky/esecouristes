@@ -80,14 +80,7 @@ class DevisManager extends Devis
 
         }
 
-
-	/*function ajouterLigneDevis {
-
-	}
-
-	function enregisterDetailDevis {
-	}
- */       
+	
     public function setDb(PDO $db)
     {
         $this->_db = $db;

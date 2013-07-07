@@ -103,7 +103,8 @@ class PrestationManager extends Prestation
                 throw new RuntimeException('La prestation doit être valide pour être enregistrée');
             }
         }
-        
+  
+      
     public function setDb(PDO $db)
     {
         $this->_db = $db;

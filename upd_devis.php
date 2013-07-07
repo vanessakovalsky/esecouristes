@@ -36,23 +36,40 @@ $sectionparent = get_section_parent($section);
     $db = new PDO('mysql:host=localhost;dbname=esecouristes', 'root', 'b2Emi0902*');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); // On émet une alerte à chaque fois qu'une requête a échoué
     
-	 $manager_prestation = new PrestationManager($db);
-
-    $manager = new DevisManager($db);
+	$manager_prestation = new PrestationManager($db);
+        $manager = new DevisManager($db);
+        $manager_prestation_devis = new PrestationDevisManager($db);
+    
     //echo $_GET['devis_id'];
 	if (isset ($_GET['devis_id'])) {
 		//echo "on affiche le devis en formulaire";
 		$id_devis = $_GET['devis_id'];
 		//echo "l'id du devis".$id_devis;
 		$devis = $manager->voirDevis($id_devis);  
-		//echo "la section est ".$devis->section_id();  
+		//echo "la section est ".$devis->section_id();
+                $prestas = $manager_prestation_devis->listerPrestationsDevis($id_devis);
 	}
-		
+        
+        else if (isset($_POST['id_devis2'])) {
+            //echo "on affiche le formulaire des prestations";
+		$id_devis = $_POST['id_devis2'];
+		//echo "l'id du devis".$id_devis;
+		$devis = $manager->voirDevis($id_devis);  
+		//echo "la section est ".$devis->section_id(); 
+                $prestas = $manager_prestation_devis->listerPrestationsDevis($id_devis);
+        }
+	
+        else // Si on a voulu créer un devis
+	{
+		//echo "on ajoute un devis";
+        	$devis = new Devis(array('evenement_id' => $_POST['evenement_id'], 'montant' => $_POST['montant'], 'section' => $section)); // On crée un nouveau devis
+        }
+        
 	//print_r($devis);
 
 // On traite le formulaire
 
-	else if (isset($_POST['montant']))
+	if (isset($_POST['montant']) )
 	{        
 		//echo "on traite le formulaire";
 		//echo $section;
@@ -80,26 +97,59 @@ $sectionparent = get_section_parent($section);
 		$devis->setSection_id($section);
 			//echo 'id ajoute';
 		
-
 		//print_r($devis);
 		if (!$devis->montantValide())
 		{
-		    $message = 'Le montant entré est invalide.';
+		    $message = 'Le montant entr&eacute; est invalide.';
 		    unset($devis);
 		}
 		else
 		{
 		    $manager->saveDevis($devis);
 		    
-		    $message = $devis->isNew() ? "Le devis a bien &eacute;t&eacute; ajouté !" : "Le devis a bien été modifié !";
+		    $message = $devis->isNew() ? "Le devis a bien &eacute;t&eacute; ajouté !" : "Le devis a bien &eacute;t&eacute; modifi&eacute; !";
 		}
 	    
 	}
+        
+        if (isset($_POST['total'])) {
+            
+            //echo "l'id du devis".$_POST['id_devis2'];
+            //echo "des prestations arrivent!";
+            
+            // On créer les objets prestations
+           
+            //print_r($_POST);
+            foreach ($_POST['prestation_devis'] as $prestadevis) {
+                
+                //echo "passe dans le foreach";
+                //print_r($prestadevis);
+                
+                $presta = new PrestationDevis(array('id_devis' => $_POST['id_devis2'])); // On crée une nouvelle prestation 
+                
+                $id_devis = $_POST['id_devis2'];
+		//echo "l'id du devis".$id_devis;
+		$presta->setId_devis($id_devis);
+			
+		$id_prestation = $prestadevis['id_prestation'];
+                //echo $id_prestation;
+                //echo $prestadevis['id_prestation'];
+		$presta->setId_prestation($id_prestation);
+				
+		$quantite = $prestadevis['quantite'];
+		$presta->setQuantite($quantite);
 
-	else // Si on a voulu créer un devis
-	{
-		//echo "on ajoute un devis";
-        	$devis = new Devis(array('evenement_id' => $_POST['evenement_id'], 'montant' => $_POST['montant'], 'section' => $section)); // On crée un nouveau devis
+		$sous_total = $prestadevis['total_ligne'];
+		$presta->setSous_total($sous_total);
+
+		//On enregistre les prestations;
+                //print_r($presta);
+		    $manager_prestation_devis->enregistrerPrestationDevis($presta);
+		    
+		    $message = "Les prestations ont bien &eacute;t&eacute; enregistr&eacute;es.";
+                //unset($presta);    
+            }
+                            
         }	
 		
 	?>
@@ -146,47 +196,8 @@ if (isset($message)) {// On a un message à afficher ?
 				<option value="3">Refus&eacute;</option>
 			</select>
 		</fieldset>
-		
-		<fieldset class="bleu-clair">
-		<legend class="TabHeader">Prestations pour l'&eacute;v&egrave;nement <?php if (isset($devis)) echo $devis->evenement_nom(); ?></legend>		<table>
-                <form id="ligne-prestation">
-                    <table id="prestation">
-                        <tbody>
-                        <tr>
-				<th>Prestation</th>
-				<th>Prix unitaire</th>
-				<th>Quantit&eacute;</th>
-				<th>Sous-total</th>
-			</tr>
-
-			<tr class="ligne-presta">
-                            
-				<td><select class="presta-devis" id="prestation_devis1" name="prestation_devis1">
-				<?php
-                                    $i = 1;
-				    foreach ($manager_prestation->listerPrestations($section, $sectionparent) as $prestation) {
-						?><option data-prix="<?php echo $prestation->prix(); ?>" value="<?php echo $prestation->id_prestation();?>"><?php echo $prestation->libelle(); ?></option>
-					<?php 
-                                        $i ++;
-                                    }
-					
-				?>
-				</select></td>
-				<td><input type="text" id="prix_unitaire1" name="prix_unitaire1" class="prix_unitaire" size="5" readonly value="0" /></td>
-				<td><input type="text" id="quantite1" name="quantite1" class="quantite" size="5" maxlenght="10" value="<?php ?>" /></td>
-				<td><input type="text" id="total_ligne1" name="total_ligne1" class="total_ligne" size="5" readonly value="<?php ?>" /></td>
-			</tr>
-                        </tbody>
-                </table>
-                </form>
-                        <button class="ajouter-ligne">+</button>
-    Total : <input type="text" class="total" name="total" id="total" size="20" readonly value="<?php ?>" />
-                        
-          
-                
-                </fieldset>		
-				
-		<?php
+            
+            		<?php
 			if(isset($devis) && !$devis->isNew())
 			{
 		?>
@@ -201,7 +212,85 @@ if (isset($message)) {// On a un message à afficher ?
 		<?php
 			}
 		?>
-        </form>
+            
+        </form>		
+	
+        <form id="ligne-prestation" action="upd_devis.php" method="post">
+            <fieldset class="bleu-clair">
+		<legend class="TabHeader">Prestations pour l'&eacute;v&egrave;nement <?php if (isset($devis)) echo $devis->evenement_nom(); ?></legend>		<table>
+                
+                    <table id="prestation">
+                        <tbody>
+                        <tr>
+				<th>Prestation</th>
+				<th>Prix unitaire</th>
+				<th>Quantit&eacute;</th>
+				<th>Sous-total</th>
+			</tr>
+                        <?php
+                        // On teste pour savoir si des prestations existent pour ce devis
+                    if (!empty($prestas)) {
+                        //print_r($prestas);
+                        //echo "il n'y a pas de prestations pour ce devis";
+                        // On boucle sur les prestations pour les afficher
+                        $n = 1; //pour incrementer les id des boutton pour le js
+                        foreach($prestas as $prestationdevis) {
+                            //print_r($prestationdevis);
+                            $id_prestation_devis = $prestationdevis->id_prestation();
+                            //echo $id_prestation_devis."<br />";
+                            $presta_devis = $manager_prestation->get($id_prestation_devis);
+                            //print_r($presta_devis);
+                            ?>
+                            <tr class="ligne-presta">
+                            
+				<td><select class="presta-devis" id="prestation_devis<?php echo $n; ?>" name="prestation_devis[<?php echo $n; ?>][id_prestation]">
+						<option data-prix="<?php echo $presta_devis->prix(); ?>" value="<?php echo $presta_devis->id_prestation();?>"><?php echo $presta_devis->libelle(); ?></option>
+				</select></td>
+				<td><input type="text" id="prix_unitaire<?php echo $n; ?>" name="prestation_devis[<?php echo $n; ?>][prix_unitaire]" class="prix_unitaire" size="5" readonly value="<?php echo $presta_devis->prix(); ?>" /></td>
+                                <td><input type="text" id="quantite<?php echo $n; ?>" name="prestation_devis[<?php echo $n; ?>][quantite]" class="quantite" size="5" maxlenght="10" value="<?php echo $prestationdevis->quantite(); ?>" /></td>
+                                <td><input type="text" id="total_ligne<?php echo $n; ?>" name="prestation_devis[<?php echo $n; ?>][total_ligne]" class="total_ligne" size="5" readonly value="<?php echo $prestationdevis->sous_total(); ?>" /></td>
+			</tr>
+                        <?php
+                        $n ++;
+                        }
+                        //echo "fin du foreach";
+                    }    
+                        
+                    else {    
+                    ?>    
+			<tr class="ligne-presta">
+                            
+				<td><select class="presta-devis" id="prestation_devis1" name="prestation_devis[1][id_prestation]">
+				<?php
+                                    $i = 1;
+				    foreach ($manager_prestation->listerPrestations($section, $sectionparent) as $prestation) {
+						?><option data-prix="<?php echo $prestation->prix(); ?>" value="<?php echo $prestation->id_prestation();?>"><?php echo $prestation->libelle(); ?></option>
+					<?php 
+                                        $i ++;
+                                    }
+					
+				?>
+				</select></td>
+				<td><input type="text" id="prix_unitaire1" name="prestation_devis[1][prix_unitaire]" class="prix_unitaire" size="5" readonly value="0" /></td>
+				<td><input type="text" id="quantite1" name="prestation_devis[1][quantite]" class="quantite" size="5" maxlenght="10" value="<?php ?>" /></td>
+				<td><input type="text" id="total_ligne1" name="prestation_devis[1][total_ligne]" class="total_ligne" size="5" readonly value="<?php ?>" /></td>
+			</tr>
+                    <?php
+                     }
+                        ?>    
+                    
+                    </tbody>
+                </table>
+                
+                        <button class="ajouter-ligne">+</button>
+    Total : <input type="text" class="total" name="total" id="total" size="20" readonly value="<?php ?>" />
+    
+        <input type="hidden" name="id_devis2" value="<?php echo $devis->id_devis(); ?>" />
+        <input type="submit" value="Enregistrer les prestations" name="modifierprestation" class="submit" />
+                   
+                </fieldset>		
+            
+       </form>      
 </div>
 	
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
@@ -233,11 +322,12 @@ function addTableRow(table)
     {
         //alert('arrive jusqu au find');
         // break the field name and it's number into two parts
-        var parts = this.id.match(/(\D+)(\d+)$/);
+        var parts = this.name.split(/(\D+)(\d+)/);
         //alert(parts);
-        // create a unique name for the new field by incrementing
+        
+    // create a unique name for the new field by incrementing
         // the number for the previous field by 1
-        return parts[1] + ++parts[2];
+        return parts[1] + ++parts[2] + parts[3];
         // repeat for id attributes
     }).attr("id", function()
     {
