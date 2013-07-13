@@ -22,15 +22,9 @@ else if ( isset($_SESSION['sectionchoice']) ) {
 }
 else {$section=$mysection;}
 
- // On enregistre notre autoload
-    function chargerClasse($classname)
-    {
-        require './class/'.$classname.'.class.php';
-    }
-    
-    spl_autoload_register('chargerClasse');
-    
-    $db = new PDO('mysql:host=localhost;dbname=esecouristes', 'root', 'b2Emi0902*');
+    require 'lib/autoload.inc.php';
+ 
+    $db = DBFactory::getMysqlConnexionWithPDO();
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); // On émet une alerte à chaque fois qu'une requête a échoué
     
     $manager = new PrestationManager($db);
@@ -41,7 +35,7 @@ else {$section=$mysection;}
 		$presta = $manager->get($id_presta);    
 	}
 	    
-	else // Si on a voulu créer une prestation
+	else // Si on a voulu enregistrer une prestation
 	{
         	$presta = new Prestation(array('libelle' => $_POST['libelle'], 'prix' => $_POST['prix'], 'section' => $section, 'id_prestation_parent' => NULL)); // On crée une nouvelle prestation
         }

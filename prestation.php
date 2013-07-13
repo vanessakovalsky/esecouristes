@@ -3,7 +3,7 @@
 Vanessa Kovalsky vanessa.kovalsky@free.fr
 Licence GNU/GPL V3
 
-Affichage des prestations disponibles et de la possibilité d'en ajouter/modifier
+Affichage des prestations disponibles et de la possibilitï¿½ d'en ajouter/modifier
 **/
 
 include_once ("config.php"); 
@@ -12,7 +12,7 @@ writehead();
 $mysection=$_SESSION['SES_SECTION'];
 get_session_parameters();
 
-// On choisit la section concernée
+// On choisit la section concernï¿½e
 
 if (isset ($_POST["section"])) {
    $_SESSION['sectionchoice'] = intval($_POST["section"]);
@@ -27,16 +27,10 @@ $sectionparent = get_section_parent($section);
 
 //echo $sectionparent;
 
- // On enregistre notre autoload
-    function chargerClasse($classname)
-    {
-        require './class/'.$classname.'.class.php';
-    }
-    
-    spl_autoload_register('chargerClasse');
-    
-    $db = new PDO('mysql:host=localhost;dbname=esecouristes', 'root', 'b2Emi0902*');
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); // On émet une alerte à chaque fois qu'une requête a échoué
+    require 'lib/autoload.inc.php';
+ 
+    $db = DBFactory::getMysqlConnexionWithPDO();
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); // On ï¿½met une alerte ï¿½ chaque fois qu'une requï¿½te a ï¿½chouï¿½
     
     $manager = new PrestationManager($db);
     
@@ -49,7 +43,7 @@ $sectionparent = get_section_parent($section);
     </head>
     <body>
     <div align="center">
-	<h2>Paramètrage des prestations</h2>
+	<h2>Paramï¿½trage des prestations</h2>
 	<!-- On affiche le choix de la section  -->
 	<form action="prestation.php" method="post">
 	<?php
@@ -66,7 +60,7 @@ $sectionparent = get_section_parent($section);
 	</form>
 
 	<table id="prestation">
-            <tr class="TabHeader"><th>id</th><th>Libelle</th><th>Prix</th><th>Modifié?</th></tr>
+            <tr class="TabHeader"><th>id</th><th>Libelle</th><th>Prix</th><th>Modifiï¿½?</th></tr>
 <?php
 	$i == 1;
 

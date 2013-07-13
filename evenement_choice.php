@@ -40,7 +40,7 @@ $section = $filter;
 if ($company <= 0 ) check_all(41);
 
 
-// Libellé événement
+// Libellï¿½ ï¿½vï¿½nement
 $lib=((isset ($_GET["lib"]))?"%".mysql_real_escape_string($_GET["lib"])."%":"%");
 writehead();
 
@@ -136,11 +136,11 @@ echo "<input type=hidden name=canceled id=canceled value=\"0\" />";
 echo "<div align=center>
 <table border=0>
 <tr>
-<td><font size=4><b>Liste des événements</b><font size=2><i> ($number trouvés)</i></font>
+<td><font size=4><b>Liste des &eacute;v&egrave;nements</b><font size=2><i> ($number trouv&eacute;s)</i></font>
 </td>";
 echo "<td>
 <a href=\"evenement_ical.php?section=$section\"><img src=\"images/ical.png\" height=\"24\" alt=\"ical\" 
-title=\"Télécharger le fichier ical de tous ces événements\" class=\"noprint\" border=\"0\"></a>";
+title=\"T&eacute;l&eacute;charger le fichier ical de tous ces &eacute;v&egrave;nements\" class=\"noprint\" border=\"0\"></a>";
 echo " <img src=\"images/printer.gif\" height=\"24\" alt=\"imprimer\" 
 title=\"imprimer\" class=\"noprint\" onclick=\"impression();\">";
 echo "<img src=\"images/xls.jpg\" id=\"StartExcel\" height=\"24\" border=\"0\" alt=\"Excel\" 
@@ -155,34 +155,43 @@ if ( check_rights($_SESSION['id'], 15)) {
 }
 echo "</td>";
 
-// choix type événement
-echo "<td align=right> Type d'activité </td>";
+// choix type ï¿½vï¿½nement
+echo "<td align=right> Type d'activit&eacute; </td>";
 echo "<td align=left><select id='type' name='type' 
    onchange=\"redirect(document.formf.type.options[document.formf.type.selectedIndex].value, '$section','$subsections', '$dtdb', '$dtfn', '$canceled','$company')\">";
-echo "<option value='ALL' selected>Toutes activités </option>\n";
-$query2="select distinct te.CEV_CODE, ce.CEV_DESCRIPTION, te.TE_CODE, te.TE_LIBELLE
-        from type_evenement te, categorie_evenement ce
-		where te.CEV_CODE=ce.CEV_CODE
-		order by te.CEV_CODE desc, te.TE_CODE asc";
-$result2=mysql_query($query2);
-$prevCat='';
-while ($row2=@mysql_fetch_array($result2)) {
-      $TE_CODE=$row2["TE_CODE"];
-      $TE_LIBELLE=$row2["TE_LIBELLE"];
-      $CEV_DESCRIPTION=$row2["CEV_DESCRIPTION"];
-      $CEV_CODE=$row2["CEV_CODE"];
-      if ( $prevCat <> $CEV_CODE ){
-       	echo "<option class='categorie' value='".$CEV_CODE."' label='".$CEV_DESCRIPTION."'";
-       	if ($CEV_CODE == $type_evenement ) echo " selected ";
-        echo ">".$CEV_DESCRIPTION."</option>\n";
-      }
-      $prevCat=$CEV_CODE;
-      echo "<option class='type' value='".$TE_CODE."' title=\"".$TE_LIBELLE."\"";
-      if ($TE_CODE == $type_evenement ) echo " selected ";
-      echo ">".$TE_LIBELLE."</option>\n";
-}
-echo "</select></td></tr>";
+echo "<option value='ALL' selected>Toutes activit&eacute;s </option>\n";
 
+    require 'lib/autoload.inc.php';
+ 
+    $db = DBFactory::getMysqlConnexionWithPDO();
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); // On ï¿½met une alerte ï¿½ chaque fois qu'une requï¿½te a ï¿½chouï¿½
+    
+    $manager = new TypeEvenementManager($db);
+    $managerCategorie = new CategorieEvenementManager($db);
+
+    //$type_e = $manager->listerTypeEvenementSection($section);
+    //print_r($type_e);
+    $prevCat = '';
+    foreach($manager->listerTypeEvenementSection($section) as $type_evenement_section) {
+        $categTypeEv = $type_evenement_section->cev_code();
+        $categorie = $managerCategorie->get($categTypeEv);
+        $categEv = $categorie->cev_code();
+        
+        if ($categTypeEv <> $prevCat ) {   
+        ?>
+<option class='categorie' value='<?php echo $categTypeEv; ?>' label = '<?php echo $categorie->cev_description(); ?>'<?php  if ($categTypeEv  == $type_evenement ) echo " selected "; ?>><?php echo $categorie->cev_description(); ?></option>
+        <?php
+        }
+        $prevCat = $categTypeEv;
+        $TE_CODE = $type_evenement_section->te_code();
+        ?>
+<option class='type' value='<?php echo $TE_CODE; ?>' title='<?php echo $type_evenement_section->te_libelle();?>'<?php  if ($TE_CODE == $type_evenement ) echo " selected "; ?>>
+    <?php echo $type_evenement_section->te_libelle(); ?></option>
+        <?php
+    };
+    
+echo "</select></td></tr>";
+//echo 'le type devenement'.$type_evenement;
 // choix section
 if ( $nbsections <> 1) {
   echo "<tr><td align=right >";
@@ -202,7 +211,7 @@ if ( $nbsections <> 1) {
      onchange=\"redirect('$type_evenement', document.formf.filter.options[document.formf.filter.selectedIndex].value, 
 	 			'$subsections', '$dtdb', '$dtfn', '$canceled', '$company')\">";
 
-  // pour personnel externe on limite géographiquement la vilibilité
+  // pour personnel externe on limite gï¿½ographiquement la vilibilitï¿½
   if ( $_SESSION['SES_STATUT'] == 'EXT' ) {
   	$_level=get_level("$mysection");
   	echo "<option value='$mysection' $class >".str_repeat(". ",$_level)." ".
@@ -225,12 +234,12 @@ if ( $nbsections <> 1 ) {
 	   <label for='subsections'>inclure les sous sections</label>";
 	}
 }
-// y compris les annulés
+// y compris les annulï¿½s
 if ($canceled == 1 ) $checked='checked';
 else $checked='';
 echo " <input type='checkbox' name='canceled' id='canceled' value='1' $checked 
 	   onClick=\"redirect3('$type_evenement', '$section', '$subsections' , '$dtdb', '$dtfn', this, '$company')\"/>
-	   <label for='canceled'>inclure les événements annulés</label></td></tr>";
+	   <label for='canceled'>inclure les &eacute;v&egrave;nements annul&eacute;s</label></td></tr>";
 
 
 // filtre entreprise
@@ -239,7 +248,7 @@ else $disabled='';
 echo "<tr><td align=right>Pour le compte de</td>";
 echo "<td align=left>
   	<select id='company' name='company' $disabled
-	 title=\"Evénements organisés pour le compte d'une entreprise\"
+	 title=\"Evï¿½nements organisï¿½s pour le compte d'une entreprise\"
      onchange=\"redirect('$type_evenement', '$section', '$subsections', '$dtdb', '$dtfn', '$canceled',
 	 			document.formf.company.options[document.formf.company.selectedIndex].value)\">";
 				
@@ -255,7 +264,7 @@ echo "</select>";
 
 // Choix Dates
 
-echo "<tr><td align=right >Début:</td><td align=left>";
+echo "<tr><td align=right >D&eacute;but:</td><td align=left>";
 ?>
 <input class="plain" name="dtdb" id="dtdb" value=
 <?php
@@ -274,12 +283,12 @@ echo "\"".$dtfn."\"";
 ?>
 size="12" onchange="checkDate2(document.formf.dtfn)"><a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fEndPop(document.formf.dtdb,document.formf.dtfn);return false;" HIDEFOCUS><img name="popcal" align="absmiddle" src="images/calbtn.gif" width="34" height="22" border="0" alt="" ></a>
 <?php
-// DEB libellé événement
+// DEB libellï¿½ ï¿½vï¿½nement
 echo "<tr>
-<td align=right >Libellé ou Lieu contient</td>
+<td align=right >Libell&eacute; ou Lieu contient</td>
 <td align=left>";
-echo "<input type=\"text\" name=\"lib\" value=\"".preg_replace("/\%/","",$lib)."\" size=\"30\" alt=\"\" title=\"Utilisez le signe % pour remplacer des caractères\"/>";
-// FIN libellé événement
+echo "<input type=\"text\" name=\"lib\" value=\"".preg_replace("/\%/","",$lib)."\" size=\"30\" alt=\"\" title=\"Utilisez le signe % pour remplacer des caractï¿½res\"/>";
+// FIN libellï¿½ ï¿½vï¿½nement
 
 echo " <input type='submit' value='go'>";
 echo "</td></tr></table>";
@@ -312,7 +321,7 @@ if ( $number > 0 ) {
     <td class='FondMenu'>";
    echo "<table cellspacing=0 border=0>";
    echo "<tr class=TabHeader>
-      	  <td width=350 align=center>Activité".$organisateur."</td>
+      	  <td width=350 align=center>Activit&eacute;".$organisateur."</td>
     	  <td width=0></td>";
    if ($type_evenement == 'DPS')
       echo "<td width=60 align=center>DPS</td>
@@ -402,12 +411,12 @@ if ( $number > 0 ) {
 	  if ( $nbsections <> 1) $organisateur="<font size=1 >(".$S_CODE.")</font>";
 	  else $organisateur="";
 
-	  if ( $E_CANCELED == 1 ) $myimg="<img src=images/red.gif title='événement annulé'>";
-	  elseif ( $E_CLOSED == 1 ) $myimg="<img src=images/yellow.gif title='inscriptions fermées'>";
+	  if ( $E_CANCELED == 1 ) $myimg="<img src=images/red.gif title='ï¿½vï¿½nement annulï¿½'>";
+	  elseif ( $E_CLOSED == 1 ) $myimg="<img src=images/yellow.gif title='inscriptions fermï¿½es'>";
 	  else {
 	    $myimg="<img src=images/green.gif title='inscriptions ouvertes'>";
-	    // si inscription interdite pour les externes alors on vérifie si l'agent fait partie d'une sous section 
-		//ou d'un niveau plusélevé : auquel cas on l'autorise.
+	    // si inscription interdite pour les externes alors on vï¿½rifie si l'agent fait partie d'une sous section 
+		//ou d'un niveau plusï¿½levï¿½ : auquel cas on l'autorise.
 	  	if (( $nbsections <> 1) and ( $E_OPEN_TO_EXT == 0 ) and ( $mysection <> $S_ID )) {
 	  	 	if ( get_section_parent("$mysection") <> get_section_parent("$S_ID")) {
 	  	 		$list = preg_split('/,/' , get_family_up("$S_ID"));
@@ -415,13 +424,13 @@ if ( $number > 0 ) {
 			   		$list = preg_split('/,/' , get_family("$S_ID"));  
 			   		if (! in_array($mysection,$list))
 	  	 				$myimg="<img src=images/yellow.gif 
-						   title='inscriptions interdites pour personnes extérieures'>";
+						   title='inscriptions interdites pour personnes extï¿½rieures'>";
 	  	 			}
 	  		}
-	  		else {// je peux inscrire sur les antennes voisines mais pas les départements voisins
+	  		else {// je peux inscrire sur les antennes voisines mais pas les dï¿½partements voisins
 	  			if ( get_level("$mysection") + 2 <= $nbmaxlevels )
 	  				$myimg="<img src=images/yellow.gif 
-					  title='inscriptions interdites pour personnes extérieures'>";
+					  title='inscriptions interdites pour personnes extï¿½rieures'>";
 	  		}
 	  	}
 	  }
@@ -450,7 +459,7 @@ if ( $number > 0 ) {
 
 
 	  if ( $E_PARENT <> '' and $E_PARENT > 0 )
-	      $b1 = "<td align=left><img src=images/renfortsmall.png height=16 title='renfort sur un autre événement'><a href=evenement_display.php?evenement=".$E_PARENT."></a>";
+	      $b1 = "<td align=left><img src=images/renfortsmall.png height=16 title='renfort sur un autre ï¿½vï¿½nement'><a href=evenement_display.php?evenement=".$E_PARENT."></a>";
 	  else $b1="<td align=left><img src=images/".$TE_CODE."small.gif height=16 title='".$TE_LIBELLE."'>";
 
 	  $query2="select count(*) as NR from evenement where E_PARENT=".$E_CODE;
@@ -462,7 +471,7 @@ if ( $number > 0 ) {
       if ( $NR > 1 ) $b2 .= "<b><font color=green>(x$NR)</font></b>";
 
 	  if ( $nbsessions > 1 )  {
-	  	$session="<font size=1 > partie n°".$EH_ID."/".$nbsessions."</font>";
+	  	$session="<font size=1 > partie &#x2116; ".$EH_ID."/".$nbsessions."</font>";
 	  }
 	  else $session="";
 	  
@@ -501,7 +510,7 @@ if ( $number > 0 ) {
    echo "</td></tr></table>";
 }
 else {
-     echo "<p><b>Aucune activité ne correspond aux critères choisis</b>";
+     echo "<p><b>Aucune activit&eacute; ne correspond aux crit&egrave;res choisis</b>";
 }
 echo "<iframe width=132 height=142 name=\"gToday:contrast:agenda.js\" id=\"gToday:contrast:agenda.js\" src=\"ipopeng.htm\" scrolling=\"no\" frameborder=\"0\" style=\"visibility:visible; z-index:999; position:absolute; left:-500px; top:0px;\"></iframe>";
 echo "</BODY>

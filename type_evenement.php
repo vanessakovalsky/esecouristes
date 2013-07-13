@@ -10,15 +10,9 @@ include_once ("config.php");
 check_all(0);
 writehead();
 
- // On enregistre notre autoload
-    function chargerClasse($classname)
-    {
-        require './class/'.$classname.'.class.php';
-    }
-    
-    spl_autoload_register('chargerClasse');
-    
-    $db = new PDO('mysql:host=localhost;dbname=esecouristes', 'root', 'b2Emi0902*');
+    require 'lib/autoload.inc.php';
+ 
+    $db = DBFactory::getMysqlConnexionWithPDO();
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); // On �met une alerte � chaque fois qu'une requ�te a �chou�
     
     $manager = new TypeEvenementManager($db);

@@ -6,7 +6,7 @@ Licence GNU/GPL V3
 Classe servant à gérer types d'évènements
 **/
 
-class TypeEvenementManager extends TypeEvenement
+class TypeAgrementManager extends TypeAgrement
 {
 	// Déclaration des variables
 	protected $_db;
@@ -15,41 +15,28 @@ class TypeEvenementManager extends TypeEvenement
 		$this->_db = $db;
 	}
 
-	public function listerTypeEvenement() {
+	public function listerTypeAgrement() {
 
-		$listeTypeEvenement = array();
-		$sql = $this->_db->prepare('SELECT TE_CODE, TE_LIBELLE, CEV_CODE, TA_CODE FROM type_evenement');
+		$listeTypeAgrement = array();
+		$sql = $this->_db->prepare('SELECT TA_CODE, CA_CODE, TA_DESCRIPTION, TA_FLAG FROM type_agrement');
 		$sql->execute();
-		while ($type_evenement = $sql->fetch(PDO::FETCH_ASSOC))
+		while ($type_agrement = $sql->fetch(PDO::FETCH_ASSOC))
 				{
-					$listeTypeEvenement[] = new TypeEvenement($type_evenement);
+					$listeTypeAgrement[] = new TypeAgrement($type_agrement);
 				}
 
-		return $listeTypeEvenement;
+		return $listeTypeAgrement;
 	}
 	
-	public function listerTypeEvenementSection($section) {
-            $listeTypeEvenementSection = array();
-            $sql = $this->_db->prepare('SELECT DISTINCT te.TE_CODE, te.TE_LIBELLE, te.CEV_CODE FROM `type_evenement` AS te LEFT JOIN type_agrement AS ta ON te.TA_CODE = ta.TA_CODE LEFT JOIN agrement AS ag ON te.TA_CODE = ag.TA_CODE WHERE (ag.A_FIN >= NOW( ) OR ag.A_FIN IS NULL)AND ag.S_ID = :section');
-            $sql->bindValue(':section',$section);
-            $sql->execute();
-           while ($type_evenement_section = $sql->fetch(PDO::FETCH_ASSOC))
-				{
-					$listeTypeEvenementSection[] = new TypeEvenement($type_evenement_section);
-				}
-
-		return $listeTypeEvenementSection;
-        }
-        
-        public function get($id) {
+	 public function get($id) {
     		//$id = (int) $id;
              //echo $id;
-            $q = $this->_db->prepare('SELECT TE_CODE, TE_LIBELLE, CEV_CODE, TA_CODE FROM type_evenement WHERE TE_CODE = :te_code');
-            $q->bindValue(':te_code', $id);
+            $q = $this->_db->prepare('SELECT TA_CODE, CA_CODE, TA_DESCRIPTION, TA_FLAG FROM type_agrement WHERE TA_CODE = :ta_code');
+            $q->bindValue(':ta_code', $id);
             $q->execute();
             $donnees = $q->fetch(PDO::FETCH_ASSOC);
                 
-            return new TypeEvenement($donnees);
+            return new TypeAgrement($donnees);
 	}
 	
 	    /**

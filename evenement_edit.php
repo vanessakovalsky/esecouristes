@@ -1,10 +1,10 @@
 <?php
 
-  # written by: Nicolas MARCHE, Jean-Pierre KUNTZ
-  # contact: nico.marche@free.fr
-  # project: eBrigade
+  # written by: Nicolas MARCHE, Jean-Pierre KUNTZ, Vanessa KOVALSKY
+  # contact: vanessa.kovalsky@free.fr
+  # project: esecouristes
   # homepage: http://sourceforge.net/projects/ebrigade/
-  # version: 2.6
+  # version: 0.1
 
   # Copyright (C) 2004, 2011 Nicolas MARCHE
   # This program is free software; you can redistribute it and/or modify
@@ -38,7 +38,7 @@ function deletefile(event, file) {
 
 function warning_cancel(checkbox) {
   if (checkbox.checked)
-     alert("Attention : vous devez renseigner la raison de cette annulation dans la case ci contre.\n(manque de secouristes, problème de matériel, annulé par l'organisateur ...)" );
+     alert("Attention : vous devez renseigner la raison de cette annulation dans la case ci contre.\n(manque de secouristes, problï¿½me de matï¿½riel, annulï¿½ par l'organisateur ...)" );
     }
  
 function change() 
@@ -117,7 +117,7 @@ function updfin(dtdebut,dtfin) {
 <?php
 
 function display_evt_accepte_renfort($evt,$renfortde="null"){
-// Affiche les événements de même type aux mêmes dates de début et fin
+// Affiche les ï¿½vï¿½nements de mï¿½me type aux mï¿½mes dates de dï¿½but et fin
 // e1 : Evenement renfort possible
 // e2 : Evenement courant
 $out='';
@@ -141,11 +141,11 @@ $res= mysql_query($sql);
 	while($row=mysql_fetch_array($res)){
 		$out .= "\n<option value=\"".$row['e_code']."\" ".(($renfortde==$row['e_code'])?" selected":"").">(".get_section_code($row['s_id']).") ".$row['e_libelle']."</option>";
 	}
-	echo "<select name=\"parent\" title=\"Evénement(s) à la même date\">";
+	echo "<select name=\"parent\" title=\"Evï¿½nement(s) ï¿½ la mï¿½me date\">";
 	if ( $renfortde == "null" ) 
 		echo "<option value=\"null\">Lier en tant que renfort de...</option>";
 	else 
-		echo "<option value=\"null\">Désactiver le renfort</option>";
+		echo "<option value=\"null\">Dï¿½sactiver le renfort</option>";
 	echo $out;
 	echo "</select>";
 }
@@ -161,17 +161,17 @@ if ( $action == "copy" ) {
 		$nbrenforts=get_nb_renforts($evenement);
 		if ( $nbrenforts > 0 ) $avec = '+ renforts';
 		else $avec='';
-		$message = "Vous allez dupliquer cet événement du calendrier.";
-		$message .= " Vous pourrez modifier les paramètres (date, heure, lieu ...).";
-		$message .= " Veuillez préciser comment l'événement doit être dupliqué:";
+		$message = "Vous allez dupliquer cet ï¿½vï¿½nement du calendrier.";
+		$message .= " Vous pourrez modifier les paramï¿½tres (date, heure, lieu ...).";
+		$message .= " Veuillez prï¿½ciser comment l'ï¿½vï¿½nement doit ï¿½tre dupliquï¿½:";
 		$message .= "<p><a href=evenement_edit.php?evenement=".$evenement."&action=copy&copymode=simple>
-				 Evénement seul</a>";
+				 Evï¿½nement seul</a>";
 		$message .= "<p><a href=evenement_edit.php?evenement=".$evenement."&action=copy&copymode=matos>
-				 Evénement + véhicules + matériel </a>";
+				 Evï¿½nement + vï¿½hicules + matï¿½riel </a>";
 		$message .= "<p><a href=evenement_edit.php?evenement=".$evenement."&action=copy&copymode=perso>
-				 Evénement + personnel</a>";
+				 Evï¿½nement + personnel</a>";
 		$message .= "<p><a href=evenement_edit.php?evenement=".$evenement."&action=copy&copymode=full>
-				 Evénement $avec + personnel + véhicules + matériel</a>";
+				 Evï¿½nement $avec + personnel + vï¿½hicules + matï¿½riel</a>";
 		$message .= "<p><a href=evenement_display.php?evenement=".$evenement.">Annuler la duplication</a>";
 		write_msgbox("question", $question_pic, $message, 30,30, 600 );
 		exit;
@@ -243,7 +243,7 @@ for ( $i=1; $i <= $nbmaxsessionsparevenement; $i++) {
    $MYE_DATE_DEBUT[$i]="";
    $MYE_DATE_FIN[$i]="";
    $MYE_HEURE_RDV[$i]="8:00";
-   $MYE_LIEU_RDV[$i]="Au siège de l'association";
+   $MYE_LIEU_RDV[$i]="Au si&egrave;ge de l'association";
 } 
 
 if (( $action == "update" ) or ( $action == "copy" ) or ( $action == "renfort" )) {
@@ -351,10 +351,10 @@ if ( ! is_children($section,$mysection)) $mysection=$section;
 
 echo "<body onload='change();'>";
 
-if ($copymode == 'full') $txt="Duplication complète d'un événement";
-else if ($copymode == 'perso' or $copymode == 'matos') $txt="Duplication d'un événement";
-else if ($copymode == 'simple') $txt="Duplication simple d'un événement";
-else $txt='Saisie événement';
+if ($copymode == 'full') $txt="Duplication complï¿½te d'un ï¿½vï¿½nement";
+else if ($copymode == 'perso' or $copymode == 'matos') $txt="Duplication d'un ï¿½vï¿½nement";
+else if ($copymode == 'simple') $txt="Duplication simple d'un ï¿½vï¿½nement";
+else $txt='Saisie &eacute;v&egrave;nement';
 echo "<div align=center><font size=4><b>".$txt."</b></font><br>";
 
 echo "<form name=demoform action='evenement_save.php' method='POST' enctype='multipart/form-data'>";
@@ -377,14 +377,14 @@ echo "<input type='hidden' name='copycheffrom' value='$copycheffrom'>";
 // type
 //=====================================================================
 echo "<tr>
-      	  <td bgcolor=$mylightcolor><b>Type d'événement</b> <font color=red>*</font></td>
+      	  <td bgcolor=$mylightcolor><b>Type d'&eacute;v&egrave;nement</b> <font color=red>*</font></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2>";
 
 
 echo "<select id='type' name='type' onchange='change()'>";
 echo "<option value='ALL'>Choisir un type ...</option>";
 
-$query="select distinct te.CEV_CODE, ce.CEV_DESCRIPTION, te.TE_CODE, te.TE_LIBELLE
+/*$query="select distinct te.CEV_CODE, ce.CEV_DESCRIPTION, te.TE_CODE, te.TE_LIBELLE
         from type_evenement te, categorie_evenement ce
 		where te.CEV_CODE=ce.CEV_CODE";
 if (( $action == 'create' ) or ( $MYTE_CODE <> 'INS' )) $query .= " and TE_CODE <> 'INS' ";
@@ -407,7 +407,38 @@ while ($row=@mysql_fetch_array($result)) {
       echo "<option class='type' value='".$TE_CODE."' title=\"".$TE_LIBELLE."\"";
       if ($TE_CODE == $MYTE_CODE ) echo " selected ";
       echo ">".$TE_LIBELLE."</option>\n";
-}
+}*/
+
+    
+    require 'lib/autoload.inc.php';
+ 
+    $db = DBFactory::getMysqlConnexionWithPDO();
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); // On ï¿½met une alerte ï¿½ chaque fois qu'une requï¿½te a ï¿½chouï¿½
+    
+    $manager = new TypeEvenementManager($db);
+    $managerCategorie = new CategorieEvenementManager($db);
+
+    //$type_e = $manager->listerTypeEvenementSection($section);
+    //print_r($type_e);
+    $prevCat = '';
+    foreach($manager->listerTypeEvenementSection($section) as $type_evenement_section) {
+        $categTypeEv = $type_evenement_section->cev_code();
+        $categorie = $managerCategorie->get($categTypeEv);
+        $categEv = $categorie->cev_code();
+        
+        if ($categTypeEv <> $prevCat ) {   
+        ?>
+<option class='categorie' value='<?php echo $categTypeEv; ?>' label = '<?php echo $categorie->cev_description(); ?>'<?php  if ($categTypeEv  == $type_evenement ) echo " selected "; ?>><?php echo $categorie->cev_description(); ?></option>
+        <?php
+        }
+        $prevCat = $categTypeEv;
+        $TE_CODE = $type_evenement_section->te_code();
+        ?>
+<option class='type' value='<?php echo $TE_CODE; ?>' title='<?php echo $type_evenement_section->te_libelle();?>'<?php  if ($TE_CODE == $type_evenement ) echo " selected "; ?>>
+    <?php echo $type_evenement_section->te_libelle(); ?></option>
+        <?php
+    };
+    
 echo "</select>";
 echo " </tr>";
 
@@ -428,7 +459,7 @@ echo "<tr id='rowflag1' $style>
 echo "</tr>";
 
 //===============================================================
-// DPS demandé par les pouvoirs publics ?
+// DPS demandï¿½ par les pouvoirs publics ?
 //===============================================================
 
 if ( $MYE_PP == 1 )$checked="checked";
@@ -438,9 +469,9 @@ if ($MYTE_CODE <> 'DPS' ) $style="";
 else  $style="style='display:none'";
 
 echo "<tr id='rowpp' $style>
-      	  <td bgcolor=$mylightcolor><b>DPS demandé par les pouvoirs publics?</b> <font color=red>*</font></td>
+      	  <td bgcolor=$mylightcolor><b>DPS demandï¿½ par les pouvoirs publics?</b> <font color=red>*</font></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2><input type='checkbox' name='pp' id='pp' value='1' $checked
-			 title='Cocher cette case si le DPS a été demandé par les pouvoirs publics'></td>";		
+			 title='Cocher cette case si le DPS a ï¿½tï¿½ demandï¿½ par les pouvoirs publics'></td>";		
 echo "</tr>";
 
 
@@ -487,7 +518,7 @@ else {
 // description
 //=====================================================================
 echo "<tr>
-      	  <td bgcolor=$mylightcolor ><b>Libellé</b> <font color=red>*</font></td>
+      	  <td bgcolor=$mylightcolor ><b>Libell&eacute;</b> <font color=red>*</font></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2><input type='text' name='libelle' size='40' value=\"$MYE_LIBELLE\" colspan=2>";		
 echo "</tr>";
 
@@ -524,7 +555,7 @@ echo "</select>";
 
 $dim=false;
 if ( $MYTE_CODE == 'DPS' ){
-	// le chef, le cadre de l'événement ont toujours accès à cette fonctionnalité, les autres doivent avoir 15 ou 24
+	// le chef, le cadre de l'ï¿½vï¿½nement ont toujours accï¿½s ï¿½ cette fonctionnalitï¿½, les autres doivent avoir 15 ou 24
 	if (check_rights($_SESSION['id'],15,get_section_organisatrice($evenement)))
 		$dim=true;
 	else if ( get_chef_evenement ( $evenement ) == $_SESSION['id'] )
@@ -532,7 +563,7 @@ if ( $MYTE_CODE == 'DPS' ){
 	else if ( get_cadre (get_section_organisatrice ( $evenement )) == $_SESSION['id'] )
 		$dim=true;
 	
-	if ( $MYE_PARENT <> 'null' ) echo " <a href=evenement_display.php?evenement=$MYE_PARENT >Voir événement principal</a>";			
+	if ( $MYE_PARENT <> 'null' ) echo " <a href=evenement_display.php?evenement=$MYE_PARENT >Voir ï¿½vï¿½nement principal</a>";			
 	else echo " Effectif minimum: <b>".(isset($MYE_NB_DPS)?$MYE_NB_DPS:" ? ")."</b>";		
 }
 if ( $dim and ( $MYE_PARENT == 'null' ))
@@ -585,7 +616,7 @@ echo "</tr>";
 else echo "<input name='allow_reinforcement' type='hidden' value='1'>";
 
 //=====================================================================
-// date heure début
+// date heure dï¿½but
 //=====================================================================
 
 for ($k=1; $k <= $nbmaxsessionsparevenement; $k++) {
@@ -596,7 +627,7 @@ else  $style="style='display:none'";
 $next = $k + 1;
 $previous = $k - 1;
 echo "<tr id=debrow[".$k."] $style>
-      <td bgcolor=$mylightcolor rowspan=2><b>Dates partie n°".$k."</b> ";
+      <td bgcolor=$mylightcolor rowspan=2><b>Dates partie &#x2116; ".$k."</b> ";
 		  
 if ( $k == 1 ) echo " <font color=red>*</font>";
 else {
@@ -607,12 +638,12 @@ echo "</td>";
 
 echo " <td bgcolor=$mylightcolor align=left> du <font color=red>*</font>";
 echo "<input class=\"plain\" name=\"dc1_$k\" id=\"dc1_$k\" value=\"".$MYE_DATE_DEBUT[$k]."\"
-size=\"12\" onchange=\"updfin(document.demoform.dc1_$k,document.demoform.dc2_$k);\" title=\"Date début format jj-mm-yyyy\">
+size=\"12\" onchange=\"updfin(document.demoform.dc1_$k,document.demoform.dc2_$k);\" title=\"Date d&eacute;but format jj-mm-yyyy\">
 <a href=\"javascript:void(0)\" onclick=\"if(self.gfPop)gfPop.fStartPop(document.demoform.dc1_$k,document.demoform.dc2_$k);return false;\" HIDEFOCUS>
 <img name=\"popcal\" align=\"absmiddle\" src=\"images/calbtn.gif\" width=\"34\" height=\"22\" border=\"0\" alt=\"\" 
 onblur=\"updfin(document.demoform.dc1_$k,document.demoform.dc2_$k);\"></a>";
 
-echo " à <select id='debut_$k' name='debut_$k' 
+echo " &agrave; <select id='debut_$k' name='debut_$k' 
 onchange=\"EvtCalcDuree(document.demoform.dc1_$k,document.demoform.dc2_$k,document.demoform.debut_$k,document.demoform.fin_$k,document.demoform.duree_$k);\">";
 for ( $i=0; $i <= 24; $i++ ) {
     $check = $i.":00";
@@ -626,10 +657,10 @@ for ( $i=0; $i <= 24; $i++ ) {
 }
 echo "</select>";
 
-echo "<td bgcolor=$mylightcolor rowspan=2>durée ";
+echo "<td bgcolor=$mylightcolor rowspan=2>dur&eacute;e ";
 echo "<input type=\"text\" name=\"duree_$k\" id=\"duree_$k\" value=\"".$MYE_DUREE[$k]."\" size=\"3\" length=3
 onfocus=\"EvtCalcDuree(document.demoform.dc1_$k,document.demoform.dc2_$k,document.demoform.debut_$k,document.demoform.fin_$k,document.demoform.duree_$k);\" 
-title='durée en heures de la partie n°$k'>h ";
+title='dur&eacute;e en heures de la partie &#x2116; $k'>h ";
 echo "</td>";
 
 echo "<tr id=finrow[".$k."] $style>";
@@ -638,7 +669,7 @@ echo "<input class=\"plain\" name=\"dc2_$k\" id=\"dc2_$k\" value=\"".$MYE_DATE_F
 size=\"12\" onchange=\"checkDate2(document.demoform.dc2_$k)\" title=\"Date fin format jj-mm-yyyy\">
 <a href=\"javascript:void(0)\" onclick=\"if(self.gfPop)gfPop.fEndPop(document.demoform.dc1_$k,document.demoform.dc2_$k);return false;\" HIDEFOCUS>
 <img name=\"popcal\" align=\"absmiddle\" src=\"images/calbtn.gif\" width=\"34\" height=\"22\" border=\"0\" alt=\"\" ></a>";
-echo " à <select id='fin_$k' name='fin_$k' 
+echo " &agrave; <select id='fin_$k' name='fin_$k' 
 onchange=\"EvtCalcDuree(document.demoform.dc1_$k,document.demoform.dc2_$k,document.demoform.debut_$k,document.demoform.fin_$k,document.demoform.duree_$k);\">";
 for ( $i=0; $i <= 24; $i++ ) {
    if ( $i.":00" == $MYE_FIN[$k] ) $selected="selected";
@@ -720,34 +751,34 @@ if ( $k <= $nbmaxsessionsparevenement ) {
 	echo "<tr id='plusrow[$k]' $style>
 	<td bgcolor=$mylightcolor ></td>
 	<td bgcolor=$mylightcolor align=center colspan=2>
-	<img src=images/plusgreen.png border=0 title='Ajouter une partie n°$k dates/heures '
+	<img src=images/plusgreen.png border=0 title='Ajouter une partie nï¿½$k dates/heures '
 	onclick=\"javascript:showNextRow('debrow[$next]','finrow[$next]','heurerow[$next]','lieurow[$next]','plusrow[$k]','plusrow[$next]',$last,'debrow[$afternext]');\" >
 	</td></tr>";
  }
 }
 
 //=====================================================================
-// inscriptions fermées
+// inscriptions fermï¿½es
 //=====================================================================
 
 if ( $MYE_CLOSED == 1 )$checked="checked";
 else $checked="";
 
 echo "<tr>
-      	  <td bgcolor=$mylightcolor><b>Inscriptions fermées</b></td>
+      	  <td bgcolor=$mylightcolor><b>Inscriptions ferm&eacute;es</b></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2><input type='checkbox' name='closed'  value='1' $checked></td>";		
 echo "</tr>";
       
 	  
 //=====================================================================
-// événement annulé
+// ï¿½vï¿½nement annulï¿½
 //=====================================================================
 
 if ( $MYE_CANCELED == 1 )$checked="checked";
 else $checked="";
 
 echo "<tr>
-      	  <td bgcolor=$mylightcolor><b>Evenement annulé</b></td>
+      	  <td bgcolor=$mylightcolor><b>&Eacute;v&egrave;nement annul&eacute;</b></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2>
 				<input type='checkbox' name='canceled'  value='1' $checked 	onclick='warning_cancel(this)'>
 				<font size=1> Pourquoi? </font>
@@ -763,10 +794,10 @@ if ( $MYE_VISIBLE_OUTSIDE == 1 )$checked="checked";
 else $checked="";
 
 echo "<tr>
-      	  <td bgcolor=$mylightcolor><b>Visible de l'extérieur</b></td>
+      	  <td bgcolor=$mylightcolor><b>Visible de l'ext&eacute;rieur</b></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2>
 				<input type='checkbox' name='visible_outside'  value='1' $checked onclick='makeVisibleExternal(this)'
-				title=\"Si cette case est cochée, l'événement peut être visible sans identification dans un site web externe\">";		
+				title=\"Si cette case est coch&eacute;e, l'&eacute;v&egrave;nement peut &ecirc;tre visible sans identification dans un site web externe\">";		
 echo "</tr>";
 
 //=====================================================================
@@ -775,10 +806,10 @@ echo "</tr>";
 
 echo "<tr>
       	  <td bgcolor=$mylightcolor><b>Adresse exacte<br>avec code postal</b>
-		  <img src='images/miniquestion.png' border=0 title=\"si l'adresse renseignée est correcte, alors un lien Google Maps est activé\">
+		  <img src='images/miniquestion.png' border=0 title=\"si l'adresse renseignï¿½e est correcte, alors un lien Google Maps est activï¿½\">
 		  </td>
       	  <td bgcolor=$mylightcolor align=left colspan=2>";
-echo "<input type='text' name='address' size='45' value=\"$MYE_ADDRESS\" title=\"Saisir ici l'adresse exacte de l'événement, pour géolocalisation google maps\"></td>";
+echo "<input type='text' name='address' size='45' value=\"$MYE_ADDRESS\" title=\"Saisir ici l'adresse exacte de l'ï¿½vï¿½nement, pour gï¿½olocalisation google maps\"></td>";
 echo "</tr>";
 
 //=====================================================================
@@ -792,12 +823,12 @@ echo "<textarea name='comment' cols='50' rows='3' style='FONT-SIZE: 10pt; FONT-F
 echo "</tr>";
 
 //=====================================================================
-// commentaire extérieur
+// commentaire extï¿½rieur
 //=====================================================================
 if ( $MYE_VISIBLE_OUTSIDE == 1 )  $style="style=''";
 else  $style="style='display:none'";
 echo "<tr id=rowcomment2 $style>
-      	  <td bgcolor=$mylightcolor><b>Commentaire extérieur</b></td>
+      	  <td bgcolor=$mylightcolor><b>Commentaire extï¿½rieur</b></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2>";
 echo "<textarea name='comment2' id='comment2' cols='50' rows='3' style='FONT-SIZE: 10pt; FONT-FAMILY: Arial;' value=\"$MYE_COMMENT2\">".$MYE_COMMENT2."</textarea></td>";
 echo "</tr>";
@@ -816,7 +847,7 @@ if ( $nbsections == 0 ) {
 		$MYC_ID = 0;
 	}
 	else $selected ='';
-	echo "<option value='' $selected >... Non précisé ...</option>";      	  
+	echo "<option value='' $selected >... Non pr&eacute;cis&eacute; ...</option>";      	  
 	echo companychoice($mysection,$MYC_ID,$includeparticulier=false);
 	echo "</select>";
 	echo "</tr>";
@@ -827,7 +858,7 @@ if ( $nbsections == 0 ) {
 	echo "</tr>";
 	
 	echo "<tr>
-      	  <td bgcolor=$mylightcolor ><b>Tél du contact sur place</b></td>
+      	  <td bgcolor=$mylightcolor ><b>T&eacute;l du contact sur place</b></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2><input type='text' name='contact_tel' id='contact_tel'  size='20' value=\"$MYE_CONTACT_TEL\" onchange='checkPhone(form.contact_tel,\"$MYE_CONTACT_TEL\");'>";		
 	echo "</tr>";
 	
@@ -846,7 +877,7 @@ else  $style2="style='display:none'";
 
 if ( $nbsections == 0 ) {
 	echo "<tr>
-      	  <td bgcolor=$mylightcolor ><b>N° Convention</b></td>
+      	  <td bgcolor=$mylightcolor ><b>&#x2116; Convention</b></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2><input type='text' name='convention' size='20' value=\"$MYE_CONVENTION\">";		
 	echo "</tr>";
 }
@@ -860,7 +891,7 @@ else echo "<input type='hidden' name='convention' value=''>";
 
 if ( $nbsections == 0 ) {
 	echo "<tr $style2>
-      	  <td bgcolor=$mylightcolor ><b>Nombre de VPSP prévus</b></td>
+      	  <td bgcolor=$mylightcolor ><b>Nombre de VPSP prï¿½vus</b></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2><input type='text' name='nb_vpsp' size='20' value=\"$MYE_NB_VPSP\">";		
 	echo "</tr>";
 }
@@ -868,7 +899,7 @@ else echo "<input type='hidden' name='nb_vpsp' value=''>";
 
 if ( $nbsections == 0 ) {
 	echo "<tr $style2>
-      	  <td bgcolor=$mylightcolor ><b>Nombre d'autres véhicules prévus</b></td>
+      	  <td bgcolor=$mylightcolor ><b>Nombre d'autres vï¿½hicules prï¿½vus</b></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2><input type='text' name='nb_autres_vehicules' size='20' value=\"$MYE_NB_AUTRES_VEHICULES\">";		
 	echo "</tr>";
 }
@@ -881,14 +912,14 @@ else echo "<input type='hidden' name='nb_autres_vehicules' value=''>";
 	echo "</tr>";
 
 	echo "<tr $style2>
-      	  <td bgcolor=$mylightcolor ><b>Clause particulière</b></td>
+      	  <td bgcolor=$mylightcolor ><b>Clause particuliï¿½re</b></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2>";
 	echo "<textarea name='clauses' id='clauses' cols='50' rows='3' style='FONT-SIZE: 10pt; FONT-FAMILY: Arial;' value=\"$MYE_CLAUSES\">".$MYE_CLAUSES."</textarea></td>";		
 	echo "</tr>";
 
 
 	echo "<tr $style2>
-      	  <td bgcolor=$mylightcolor ><b>Clause particulière 2</b></td>
+      	  <td bgcolor=$mylightcolor ><b>Clause particuliï¿½re 2</b></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2>";
 	echo "<textarea name='clauses2' id='clauses2' cols='50' rows='3' style='FONT-SIZE: 10pt; FONT-FAMILY: Arial;' value=\"$MYE_CLAUSES2\">".$MYE_CLAUSES2."</textarea></td>";	
 	echo "</tr>";
@@ -913,7 +944,7 @@ else echo "<input type='hidden' name='repas' value=''>";
 
 if ( $nbsections == 0) {
 	echo "<tr $style2>
-		  <td bgcolor=$mylightcolor ><b> Transport assuré par l'association : </b></td>
+		  <td bgcolor=$mylightcolor ><b> Transport assurï¿½ par l'association : </b></td>
 		  <td bgcolor=$mylightcolor aligne=left colspan=2>";
 	echo "<select id='transport' name='transport'>";
 	echo "<option value='non'";
@@ -930,7 +961,7 @@ if ( $nbsections == 0) {
 else echo "<input type='hidden' name='transport' value''>";
 
 //=====================================================================
-// emails envoyés
+// emails envoyï¿½s
 //=====================================================================
 if ( $action <> 'create' ) {
 	if ( $MYE_MAIL1 == 1 )$checked="checked";
@@ -938,7 +969,7 @@ if ( $action <> 'create' ) {
 
 	echo "<tr>
       	  <td bgcolor=$mylightcolor>
-			<font size=1>Email ouverture envoyé</font></td>
+			<font size=1>Email ouverture envoyï¿½</font></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2>
 			<input type='checkbox' name='mail1'  value='1' $checked></td>";		
 	echo "</tr>";
@@ -947,7 +978,7 @@ if ( $action <> 'create' ) {
 	else $checked="";
 	echo "<tr>
       	  <td bgcolor=$mylightcolor>
-			<font size=1 >Email clôture envoyé</font></td>
+			<font size=1 >Email clï¿½ture envoyï¿½</font></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2>
 			<input type='checkbox' name='mail2'  value='1' $checked></td>";		
 	echo "</tr>";
@@ -956,7 +987,7 @@ if ( $action <> 'create' ) {
 	else $checked="";
 	echo "<tr>
       	  <td bgcolor=$mylightcolor>
-			<font size=1 >Email annulation envoyé</font></td>
+			<font size=1 >Email annulation envoyï¿½</font></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2>
 			<input type='checkbox' name='mail3'  value='1' $checked></td>";		
 	echo "</tr>";
@@ -971,8 +1002,8 @@ else {
 // lien renfort
 //=====================================================================
 
-// si l'événement a déjà des renforts, on ne peut pas le rattacher comme renfort
-// d'un autre événement (éviter les renforts en cascade)
+// si l'ï¿½vï¿½nement a dï¿½jï¿½ des renforts, on ne peut pas le rattacher comme renfort
+// d'un autre ï¿½vï¿½nement (ï¿½viter les renforts en cascade)
 if ( $nbsections == 0 ) {
 	$query="select count(*) as NB from evenement where E_PARENT=".$evenement;
 	$result=mysql_query($query);	

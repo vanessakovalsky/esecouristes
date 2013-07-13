@@ -45,10 +45,10 @@ class TypeEvenement
 	}
 	
 	public function libelleValide() {
-		return !empty($this->_libelle);
+		return !empty($this->_te_libelle);
 	}
 	
-	
+            
 	/**
          * Méthode permettant de savoir si le libelle est nouveau
          * @return bool
