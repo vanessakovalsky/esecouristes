@@ -29,7 +29,8 @@ writehead();
         <h2>Param&eacute;trage des types d'&eacute;v&egrave;nements</h2>
 	<!-- On affiche le choix de la section  -->
 
-	<form id="ajout_type_evenement" action="upd_type_evenement.php" method="post"> 	
+	<form id="ajout_type_evenement" action="upd_type_evenement.php" method="post"> 
+        <input type="hidden" name="te_new" value="1" />
 	<input type="submit" value="Ajouter" />	
 	</form>
 

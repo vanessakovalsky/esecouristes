@@ -368,6 +368,8 @@ if ($competences == 1 or $evenements == 1 or $materiel == 1)
 	 echo "<a href='prestation.php' target=\"droite\">Prestations</a>";
          echo " / ";
          echo "<a href='type_evenement.php' target=\"droite\">Type &eacute;v&egrave;nement</a>";
+         echo " / ";
+         echo "<a href='type_agrement.php' target=\"droite\">Type agr&eacute;ment</a>";
 	 echo "</TD></TR>";
 }
 

@@ -246,7 +246,7 @@ if ( $skype <> "" ) {
 		class='noprint' border='0' ></a>";
 }
 
-echo "\n"."<script type=\"text/javascript\"></script><noscript style=\"color:red;text-decoration: blink;\"><p>Merci d'activer <b>Javascript</b> pour profiter des toutes les fonctionnalités</p></noscript>";
+echo "\n"."<script type=\"text/javascript\"></script><noscript style=\"color:red;text-decoration: blink;\"><p>Merci d'activer <b>Javascript</b> pour profiter des toutes les fonctionnalitï¿½s</p></noscript>";
 echo "\n"."<div align=center id=\"TabsTri\" >"; // dev tabs
 echo "\n"."<ul class=\"noprint\">";
 
@@ -257,7 +257,7 @@ echo "\n"."<li><a href=\"upd_personnel_sub.php?from=$from&tab=1&pompier=$pompier
 if ( $competences == 1 ) {
 	if ( $from == 'qualif' ) $class='ui-tabs-selected';
 	else $class='';
-	echo "\n"."<li class=$class><a href=\"upd_personnel_sub.php?from=$from&tab=2&pompier=$pompier\"><span><img src=images/medal.png height=14 border=0> Compétences ($NB1)</span></a></li>";
+	echo "\n"."<li class=$class><a href=\"upd_personnel_sub.php?from=$from&tab=2&pompier=$pompier\"><span><img src=images/medal.png height=14 border=0> Comp&eacute;tences ($NB1)</span></a></li>";
 
 	// formations
 	if ( $from == 'formations' ) $class='ui-tabs-selected';
@@ -274,7 +274,7 @@ if ( $evenements == 1 ){
 if ( $vehicules == 1 or $materiel == 1) {
 	if ( $from == 'vehicules' ) $class='ui-tabs-selected';
 	else $class='';
-	echo "\n"."<li class=$class><a href=\"upd_personnel_sub.php?from=$from&tab=5&pompier=$pompier\"><span><img src=images/car.png height=14 border=0> Véhicules/Matériel ($NB4)</span></a></li>";
+	echo "\n"."<li class=$class><a href=\"upd_personnel_sub.php?from=$from&tab=5&pompier=$pompier\"><span><img src=images/car.png height=14 border=0> Vï¿½hicules/Matï¿½riel ($NB4)</span></a></li>";
 }
 echo "\n"."</ul>";
 echo "\n"."</div>";// fin tabs

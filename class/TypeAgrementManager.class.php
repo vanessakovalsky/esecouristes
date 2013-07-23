@@ -40,43 +40,47 @@ class TypeAgrementManager extends TypeAgrement
 	}
 	
 	    /**
-         * Méthode permettant d'ajouter un type d'évènement
-         * @param $type_evenement TypeEvenement Le type d'évènement à ajouter
+         * Méthode permettant d'ajouter un type d'agrément
+         * @param $type_agrement TypeAgrement Le type d'agrément à ajouter
          * @return void
          */
 	
-	protected function ajouterTypeEvenement(TypeEvenement $type_evenement)
+	protected function ajouterTypeAgrement(TypeAgrement $type_agrement)
    {      
-    	$q = $this->_db->prepare('INSERT INTO type_evenement SET TE_CODE = :te_code, TE_LIBELLE = :te_libelle, CEV_CODE = :cev_code, TA_CODE = :ta_code ');
-        $q->bindValue(':te_code', $type_evenement->te_code());
-	$q->bindValue(':te_libelle', $type_evenement->te_libelle());
-	$q->bindValue(':cev_code', $type_evenement->cev_code());
-	$q->bindValue(':ta_code', $type_evenement->ta_code());
+    	$q = $this->_db->prepare('INSERT INTO type_agrement SET TA_CODE = :ta_code, TA_DESCRIPTION = :ta_description, CA_CODE = :ca_code');
+        $q->bindValue(':ta_code', $type_agrement->ta_code());
+	$q->bindValue(':ta_description', $type_agrement->ta_description());
+	$q->bindValue(':ca_code', $type_agrement->ca_code());
         $q->execute();
 	}	
     
         /**
-         * Méthode permettant de modifier un type d'évènement
-         * @param $type_evenement TypeEvenement le type d'évènement à modifier
+         * Méthode permettant de modifier un type d'agrément
+         * @param $type_agrement TypeAgrément le type d'agrément à modifier
          * @return void
          */
     
-    public function modifierTypeEvenement(TypeEvenement $type_evenement)   
+    public function modifierTypeAgrement(TypeAgrement $type_agrement)   
     {
-    	$q = $this->_db->prepare('UPDATE type_evenement SET TE_LIBELLE = :te_libelle, CEV_CODE = :cev_code, TA_CODE = :ta_code WHERE TE_CODE = :te_code');
-        $q->bindValue(':te_code', $type_evenement->te_code());
-	$q->bindValue(':te_libelle', $type_evenement->te_libelle());
-	$q->bindValue(':cev_code', $type_evenement->cev_code());
-	$q->bindValue(':ta_code', $type_evenement->ta_code());
+    	$q = $this->_db->prepare('UPDATE type_agrement SET TA_CODE = :ta_code, TA_DESCRIPTION = :ta_description, CA_CODE = :ca_code WHERE TA_CODE = :ta_code');
+        $q->bindValue(':ta_code', $type_agrement->ta_code());
+	$q->bindValue(':ta_description', $type_agrement->ta_description());
+	$q->bindValue(':ca_code', $type_agrement->ca_code());
         $q->execute();
     }
         
 	/**
-		Méthode pour déterminer si on doit mettre à jour un enregistrement ou ajouter un nouveau type d'évènement
+		Méthode pour déterminer si on doit mettre à jour un enregistrement ou ajouter un nouveau type d'agrément
 	**/
-	public function saveTypeEvenement(TypeEvenement $type_evenement)
+	public function saveTypeAgrement(TypeAgrement $type_agrement)
         {
-                $type_evenement->isNew() ? $this->ajouterTypeEvenement($type_evenement) : $this->modifierTypeEvenement($type_evenement);
+                 $new = $type_agrement->isNew();
+                if ($new == 1) {
+                        $this->ajouterTypeAgrement($type_agrement);
+                }
+                else {
+                    $this->modifierTypeAgrement($type_agrement);
+                }
         }
         
     public function setDb(PDO $db)

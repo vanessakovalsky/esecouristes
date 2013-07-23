@@ -23,7 +23,8 @@ class TypeEvenement
 	protected 	$_te_code,
                         $_te_libelle,
                         $_cev_code,
-                        $_ta_code;
+                        $_ta_code,
+                        $_te_new;
 	
 	public function __construct(array $donnees) {
         {
@@ -53,9 +54,17 @@ class TypeEvenement
          * Méthode permettant de savoir si le libelle est nouveau
          * @return bool
          */
-    public function isNew()
+    public function isNew($te_new)
         {
-            return empty($this->_te_code);
+            /* Ajouter un test pour savoir si le te_code existe déjà ou pas) 
+             * 
+             */
+             if ($te_new==1){
+                 return 1;
+             }
+             else {
+                 return 0;
+             }
         }
 	
 	/** Getters
@@ -78,7 +87,10 @@ class TypeEvenement
 		return $this->_ta_code;
 	}
 	
-
+        public function te_new() {
+            return $this->_te_new;
+        }
+        
 	/** Setters
 	Assigner des valeurs aux variables
 	**/
@@ -102,6 +114,10 @@ class TypeEvenement
 		$this->_ta_code = $ta_code;
 			
 	}
+        
+        public function setTe_new($te_new) {
+            $this->_te_new = $te_new;
+        }
 
 }// fin de la classe
 ?>

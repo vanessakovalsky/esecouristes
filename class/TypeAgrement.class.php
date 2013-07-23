@@ -11,7 +11,8 @@ class TypeAgrement
 	protected 	$_ta_code,
                         $_ca_code,
                         $_ta_description,
-                        $_ta_flag;
+                        $_ta_flag,
+                        $_ta_new;
 	
 	public function __construct(array $donnees) {
         {
@@ -38,12 +39,20 @@ class TypeAgrement
 	
 	
 	/**
-         * Méthode permettant de savoir si le libelle est nouveau
+         * Méthode permettant de savoir si le type d'agrement est nouveau
          * @return bool
          */
-    public function isNew()
+    public function isNew($ta_new)
         {
-            return empty($this->_ca_code);
+            /* Ajouter un test pour savoir si le ta_code existe déjà ou pas) 
+             * 
+             */
+             if ($ta_new==1){
+                 return 1;
+             }
+             else {
+                 return 0;
+             }
         }
 	
 	/** Getters
@@ -66,6 +75,9 @@ class TypeAgrement
 		return $this->_ta_flag;
 	}
 	
+        public function ta_new() {
+                return $this->_ta_new;
+        }
 
 	/** Setters
 	Assigner des valeurs aux variables
@@ -76,7 +88,7 @@ class TypeAgrement
 	}
 	
 	public function setCa_code($ca_code) {
-		$this->_te_libelle = $te_libelle;
+		$this->_ca_code = $ca_code;
 	}
 	
 	public function setTa_description($ta_description) {
@@ -90,6 +102,10 @@ class TypeAgrement
 		$this->_ta_flag = $ta_flag;
 			
 	}
+        
+        public function setTa_new($ta_new) {
+                $this->_ta_new = $ta_new;
+        }
 
 }// fin de la classe
 ?>

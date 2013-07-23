@@ -30,7 +30,7 @@ class TypeEvenementManager extends TypeEvenement
 	
 	public function listerTypeEvenementSection($section) {
             $listeTypeEvenementSection = array();
-            $sql = $this->_db->prepare('SELECT DISTINCT te.TE_CODE, te.TE_LIBELLE, te.CEV_CODE FROM `type_evenement` AS te LEFT JOIN type_agrement AS ta ON te.TA_CODE = ta.TA_CODE LEFT JOIN agrement AS ag ON te.TA_CODE = ag.TA_CODE WHERE (ag.A_FIN >= NOW( ) OR ag.A_FIN IS NULL)AND ag.S_ID = :section');
+            $sql = $this->_db->prepare('SELECT DISTINCT te.TE_CODE, te.TE_LIBELLE, te.CEV_CODE FROM `type_evenement` AS te LEFT JOIN type_agrement AS ta ON te.TA_CODE = ta.TA_CODE LEFT JOIN agrement AS ag ON te.TA_CODE = ag.TA_CODE WHERE (ag.A_FIN >= NOW( ) OR ag.A_FIN IS NULL)AND ag.S_ID = :section  ORDER BY te.CEV_CODE desc, te.TE_CODE asc');
             $sql->bindValue(':section',$section);
             $sql->execute();
            while ($type_evenement_section = $sql->fetch(PDO::FETCH_ASSOC))
@@ -88,8 +88,14 @@ class TypeEvenementManager extends TypeEvenement
 		Méthode pour déterminer si on doit mettre à jour un enregistrement ou ajouter un nouveau type d'évènement
 	**/
 	public function saveTypeEvenement(TypeEvenement $type_evenement)
-        {
-                $type_evenement->isNew() ? $this->ajouterTypeEvenement($type_evenement) : $this->modifierTypeEvenement($type_evenement);
+        {   
+            $new = $type_evenement->isNew();
+                if ($new == 1) {
+                        $this->ajouterTypeEvenement($type_evenement);
+                }
+                else {
+                    $this->modifierTypeEvenement($type_evenement);
+                }
         }
         
     public function setDb(PDO $db)

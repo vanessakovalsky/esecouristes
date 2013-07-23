@@ -25,15 +25,9 @@ else {$section=$mysection;}
 
 $sectionparent = get_section_parent($section);
 
- // On enregistre notre autoload
-    function chargerClasse($classname)
-    {
-        require './class/'.$classname.'.class.php';
-    }
-    
-    spl_autoload_register('chargerClasse');
-    
-    $db = new PDO('mysql:host=localhost;dbname=esecouristes', 'root', 'b2Emi0902*');
+  require 'lib/autoload.inc.php';
+ 
+    $db = DBFactory::getMysqlConnexionWithPDO();
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); // On émet une alerte à chaque fois qu'une requête a échoué
     
 	$manager_prestation = new PrestationManager($db);

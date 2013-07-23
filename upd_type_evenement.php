@@ -11,9 +11,9 @@ writehead();
 $mysection = $_SESSION['SES_SECTION'];
 get_session_parameters();
 
-    require 'lib/autoload.inc.php';
+require 'lib/autoload.inc.php';
  
-    $db = DBFactory::getMysqlConnexionWithPDO();
+$db = DBFactory::getMysqlConnexionWithPDO();
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); // On émet une alerte à chaque fois qu'une requête a échoué
 
 $manager = new TypeEvenementManager($db);
@@ -27,7 +27,7 @@ if (isset($_GET['te_id'])) {
     $type_evenement = $manager->get($id_te);
     //print_r($type_evenement);
 } else { // Si on a voulu enregistrer un type d'évènement
-    $type_evenement = new TypeEvenement(array('te_code' => $_POST['te_code'], 'te_libelle' => $_POST['te_libelle'], 'cev_code' => $_POST['categorie'], 'ta_code' => $_POST['categorie-agre'])); // On crée un nouvel objet TypeEvenement
+    $type_evenement = new TypeEvenement(array('te_code' => $_POST['te_code'], 'te_libelle' => $_POST['te_libelle'], 'cev_code' => $_POST['categorie'], 'ta_code' => $_POST['categorie-agre'], 'te_new' => $_POST['te_new'])); // On crée un nouvel objet TypeEvenement
 }
 
 //print_r($type_evenement);
@@ -42,7 +42,7 @@ if (isset($_POST['te_code'])) {
     } else {
         $manager->saveTypeEvenement($type_evenement);
 
-        $message = $type_evenement->isNew() ? "Le type d'évènement a bien été ajouté !" : "Le type d'évènement a bien été modifié !";
+        $message = $type_evenement->isNew($_POST['te_new']) ? "Le type d'&eacute;v&egrave;nement a bien été ajouté !" : "Le type d'évènement a bien été modifié !";
     }
 }
 ?>
@@ -62,11 +62,11 @@ if (isset($message)) {// On a un message à afficher ?
             <legend class="TabHeader">Information sur le type d'&eacute;v&egrave;nement</legend>
             <p>
                 <label>Code :</label>
-                <input type="text" name="te_code" maxlength="50" value="<?php if (isset($type_evenement)) echo $type_evenement->te_code(); ?>" />
+                <input type="text" name="te_code" maxlength="10" value="<?php if (isset($type_evenement)) echo $type_evenement->te_code(); ?>" />
             </p>
             <p>
                 <label>Libell&eacute; :</label>
-                <input type="text" name="te_libelle" maxlength="10" value="<?php if (isset($type_evenement)) echo $type_evenement->te_libelle(); ?>" />
+                <input type="text" name="te_libelle" maxlength="40" value="<?php if (isset($type_evenement)) echo $type_evenement->te_libelle(); ?>" />
             </p>
             <p>
                 <label>Cat&eacute;gorie d'&eacute;v&egrave;nement :</label>
@@ -115,13 +115,14 @@ foreach ($manager_categorie->listerCategorieEvenement() as $categorie) {
         </fieldset>		
 
                     <?php
-                    if (isset($type_evenement) && !$type_evenement->isNew()) {
+        if (isset($type_evenement) && !$type_evenement->isNew($_POST['te_new'])) {
                         ?>
-            <input type="hidden" name="id_te" value="<?php echo $type_evenement->te_code(); ?>" />
-            <input type="submit" value="Enregistrer ce type d'&eacute;v&eagrave;nement" name="modifier" class="submit" />
+            <input type="hidden" name="te_new" value="0" />
+            <input type="submit" value="Enregistrer ce type d'&eacute;v&egrave;nement" name="modifier" class="submit" />
             <?php
         } else {
             ?>
+                        <input type="hidden" name="te_new" value="1" />
             <input type="submit" value="Ajouter" class="submit" />
             <?php
         }
