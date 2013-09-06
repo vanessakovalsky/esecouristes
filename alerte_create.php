@@ -115,6 +115,11 @@ if (( check_rights($_SESSION['id'], 23)) and ( $sms_provider <> 0)){
 	if ( $sms_provider == 4 ) {
 		$credits = "OK";
 	}
+        
+        if( $sms_provider == 5) {
+            $credits = getSMSCredit_5();
+            $sms_url = "https://www.smsmode.com";
+        }
 }
 ?>
 <SCRIPT LANGUAGE="JavaScript">
@@ -131,7 +136,7 @@ if (( check_rights($_SESSION['id'], 23)) and ( $sms_provider <> 0)){
 	    }
 	 	if (mode[0].checked) {
 	 	 	choice="mail";
-	 	 	if ( confirm("Vous allez envoyer un email à "+ <?php echo $NB ?> +" personnes.\nContinuer?"))
+	 	 	if ( confirm("Vous allez envoyer un email ï¿½ "+ <?php echo $NB ?> +" personnes.\nContinuer?"))
 			  	 confirmed = 1;
 			else return;
 	 	} 
@@ -142,18 +147,18 @@ if (( check_rights($_SESSION['id'], 23)) and ( $sms_provider <> 0)){
 	 	 	//choice = sms or flash
 	 	 	credits = <?php echo "'".$credits."'" ?> ;
 		 	if ( credits == 'ERREUR' ) {
-	 	 	 	alert("Vous n'avez pas de crédits SMS.");
+	 	 	 	alert("Vous n'avez pas de crï¿½dits SMS.");
 	 	 	 	return;
 	 	 	}
 	 	 	if ( credits == '0' ) {
-	 	 	 	alert("Vous n'avez plus de crédits SMS.");
+	 	 	 	alert("Vous n'avez plus de crï¿½dits SMS.");
 	 	 	 	return;
 	 	 	}
 	 	 	if ( compteur.value > 160 ) {
-	 	 	 	alert("La longueur des messages SMS est limitée à 160 caractères.\nVous avez: " + compteur.value + " caratères.");
+	 	 	 	alert("La longueur des messages SMS est limitï¿½e ï¿½ 160 caractï¿½res.\nVous avez: " + compteur.value + " caratï¿½res.");
 	 	 	 	return;
 	 	 	}
-	 	 	if ( confirm("Vous allez envoyer un SMS à "+ <?php echo $NB ?> +" personnes.\nATTENTION l'envoi de ces SMS a un coût.\nContinuer?"))
+	 	 	if ( confirm("Vous allez envoyer un SMS ï¿½ "+ <?php echo $NB ?> +" personnes.\nATTENTION l'envoi de ces SMS a un coï¿½t.\nContinuer?"))
 			  	 confirmed = 1;
 			else return;
 	 	}
@@ -236,7 +241,7 @@ echo "<TABLE cellspacing=0 border=0>
 	    <td>
 	    <table cellspacing=0 border=0>
 	    <tr>
-	    <TD align='right' width=150><B>Personnel qualifié pour:</B></td>";
+	    <TD align='right' width=150><B>Personnel qualifi&eacute; pour:</B></td>";
   	echo "<td width=250 align=left>
 	  <select id='menu1' name='menu1' 
 	  onchange=\"fermerDetail();displaymanager(document.getElementById('menu1').value,'".$section."','".$dispo."',escape((this.form.mymessage).value));\">
@@ -285,7 +290,7 @@ if ($nbsections <> 1 ) {
 
 
 echo "<tr><td align='right' width=150>";
-echo "<B>Disponibilité:</B>";
+echo "<B>Disponibilit&eacute;:</B>";
 echo "<td width=250 align=left> ";
 echo " <select id='menu3' name='menu3'
 	onchange=\"fermerDetail();displaymanager('".$poste."','".$section."',document.getElementById('menu3').value,escape((this.form.mymessage).value));\"
@@ -313,7 +318,7 @@ echo "</td></tr>";
 echo "<tr><td align='right' width=150>";
 echo "<B>Nombre d'agents:</B>";
 echo "<td width=250 align=left> 
-	 <input type='button' value='$NB' title='cliquer pour voir la liste des agents concernés' onclick=\"fermerDetail(); voirDetail('".$section."','".$poste."','".$dispo."');\">";		
+	 <input type='button' value='$NB' title='cliquer pour voir la liste des agents concernï¿½s' onclick=\"fermerDetail(); voirDetail('".$section."','".$poste."','".$dispo."');\">";		
 echo "</td>";
 	
 echo "</tr></table></td>

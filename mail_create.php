@@ -37,7 +37,7 @@ writehead();
 				l2.options[l2.options.length]=o;
 				l1.options[l1.options.selectedIndex]=null;
 			} else{
-				alert("Personne n'est sélectionné");
+				alert("Personne n'est sï¿½lectionnï¿½");
 			}
 	    }
 	    if ( mode == 2) {
@@ -67,11 +67,11 @@ writehead();
 	 	if (mode[0].checked) {
 	 	 	choice="mail";
 	 	 	if (l1.options.length > MaxNB) {
-	 	 	 	alert("Vous avez choisi d'envoyer un mail à "+ l1.options.length +" personnes. \n Le maximum autorisé par le menu 'message' est "+ MaxNB+ "\n pour envoyer un message à un plus grand nombre de destinataires, utiliser plutôt le menu 'alerte', qui n'a pas de limitation.");
+	 	 	 	alert("Vous avez choisi d'envoyer un mail ï¿½ "+ l1.options.length +" personnes. \n Le maximum autorisï¿½ par le menu 'message' est "+ MaxNB+ "\n pour envoyer un message ï¿½ un plus grand nombre de destinataires, utiliser plutï¿½t le menu 'alerte', qui n'a pas de limitation.");
 	     		return;
 	 	 	}
 	 	 	else if (l1.options.length > MaxWithoutConfirm) {
-	 	 	   if ( confirm("Vous allez envoyer un email à "+ l1.options.length +" personnes.\nContinuer?"))
+	 	 	   if ( confirm("Vous allez envoyer un email ï¿½ "+ l1.options.length +" personnes.\nContinuer?"))
 			  	 confirmed = 1;
 			   else return;
 			}
@@ -82,14 +82,14 @@ writehead();
 	 	 	else return;
 	 	 	//choice = sms or flash
 	 	 	if (l1.options.length > MaxNB) {
-	 	 	 	alert("Vous avez choisi d'envoyer un SMS à "+ l1.options.length +" personnes. \n Le maximum autorisé est "+ MaxNB);
+	 	 	 	alert("Vous avez choisi d'envoyer un SMS ï¿½ "+ l1.options.length +" personnes. \n Le maximum autorisï¿½ est "+ MaxNB);
 	     		return;
 	 	 	}
 	 	 	if ( compteur.value > 160 ) {
-	 	 	 	alert("La longueur des messages SMS est limitée à 160 caractères.\nVous avez: " + compteur.value + " caratères.");
+	 	 	 	alert("La longueur des messages SMS est limitï¿½e ï¿½ 160 caractï¿½res.\nVous avez: " + compteur.value + " caratï¿½res.");
 	 	 	 	return;
 	 	 	}
-	 	 	if ( confirm("Vous allez envoyer un SMS à "+ l1.options.length +" personnes.\nATTENTION l'envoi de ces SMS a un coût.\nContinuer?"))
+	 	 	if ( confirm("Vous allez envoyer un SMS ï¿½ "+ l1.options.length +" personnes.\nATTENTION l'envoi de ces SMS a un coï¿½t.\nContinuer?"))
 			  	 confirmed = 1;
 			else return;
 	 	}
@@ -166,7 +166,7 @@ echo "<TABLE cellspacing=0 border=0>
 	    <TD align='center' width=260><B>Personnel</B><BR>
 	    <SELECT align=top name='liste1' size=6  style='width:250px'>";
 
-	// la veille opérationnelle doit pouvoir alerter tout le personnel sous sa responsabilité
+	// la veille opï¿½rationnelle doit pouvoir alerter tout le personnel sous sa responsabilitï¿½
    if ( $nbsections <> 1 ) {
 		$s=get_highest_section_where_granted($_SESSION['id'], 43);
 		if ( $s <> '' ) $mysection=$s;
@@ -293,7 +293,13 @@ if (( check_rights($_SESSION['id'], 23)) and ( $sms_provider <> 0)){
 		else $credits = getSMSCredit_3("$conn[1]");
 		$sms_url="http://www.clickatell.com/login.php?csite=clickatell";
 	}
+        
+        if( $sms_provider == 5) {
+            $credits = getSMSCredit_5();
+            $sms_url = "https://www.smsmode.com";
+        }
 }
+
 if (( check_rights($_SESSION['id'], 23)) and ( $sms_provider <> 0)){
 	echo "<p><input type=button value='historique sms' onclick='historique();'>";
 	echo "<br><table><tr><td> Il vous reste <b>".$credits." SMS.</td>";

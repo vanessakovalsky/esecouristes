@@ -30,7 +30,7 @@ echo "<script type='text/javascript' src='checkForm.js'></script>";
 function modify( form, confid, value, defaultvalue ) {
  	var ok=1;
 	if (value.indexOf(' ') >= 0){
-      	alert("Ce paramètre de configuration ne doit pas contenir d'espaces.");
+      	alert("Ce paramï¿½tre de configuration ne doit pas contenir d'espaces.");
       	form.value = defaultvalue;
       	ok=0;
     }
@@ -40,7 +40,7 @@ function modify( form, confid, value, defaultvalue ) {
     		{   
        			var c = value.charAt(i);
         		if (((c < "0") || (c > "9"))) {
-		 		alert ("Seul des numéros sont attendus: "+ value + " ne convient pas.");
+		 		alert ("Seul des numï¿½ros sont attendus: "+ value + " ne convient pas.");
 		 		form.value = defaultvalue;
 		 		ok=0;
 				}
@@ -90,7 +90,7 @@ echo "<table cellspacing=0 border=0>";
 // ===============================================
 
 echo "<tr height=10 class=TabHeader>
-      <td width=100>Paramètre</td>
+      <td width=100>Paramï¿½tre</td>
       <td width=0></td>
 	  <td width=220>Valeur</td>
       <td width=0></td>
@@ -131,7 +131,7 @@ while ($row=@mysql_fetch_array($result)) {
 	   $selected="";
 	   $disabled='';
 	}  
-  	echo "<option value='0' $selected>association de sécurité civile</option>";
+  	echo "<option value='0' $selected>association de s&eacute;curit&eacute; civile</option>";
   	if ( $VALUE == '1' ) $selected="selected"; 
 	  else $selected="";
   	echo "<option value='1' $selected>caserne pompiers volontaires</option>";
@@ -171,7 +171,7 @@ while ($row=@mysql_fetch_array($result)) {
   	echo "<select id='f9' onchange='modify(config.f".$ID.",\"".$ID."\", this.value, \"".$VALUE."\")'>";
   	if ( $VALUE == '0' ) $selected="selected"; 
 	  else $selected="";
-  	echo "<option value='0' $selected>SMS désactivés</option>";
+  	echo "<option value='0' $selected>SMS dï¿½sactivï¿½s</option>";
   	if ( $VALUE == '2' ) $selected="selected";
 	  else $selected="";
   	echo "<option value='2' $selected>www.envoyersms.org</option>";
@@ -184,6 +184,9 @@ while ($row=@mysql_fetch_array($result)) {
   	if ( $VALUE == '4' ) $selected="selected";
 	  else $selected="";
   	echo "<option value='4' $selected>Orange</option>";
+        if ( $VALUE == '5') $selected="selected";
+            else $selected="";
+        echo "<option value='5' $selected>www.smsmode.com</option>";
   	echo "</select>";
   }
   elseif ( $ID == 11 ) {
@@ -206,10 +209,10 @@ while ($row=@mysql_fetch_array($result)) {
   	echo "<select id='f15' onchange='modify(config.f".$ID.",\"".$ID."\", this.value, \"".$VALUE."\")'>";
   	if ( $VALUE == '0' ) $selected="selected"; 
 	  else $selected="";
-  	echo "<option value='0' $selected>désactivé</option>";
+  	echo "<option value='0' $selected>d&eacute;sactiv&eacute;</option>";
   	if ( $VALUE == '1' ) $selected="selected";
 	  else $selected="";
-  	echo "<option value='1' $selected>activé</option>";
+  	echo "<option value='1' $selected>activ&eacute;</option>";
   	echo "</select>";
   }
   elseif ( $ID == 16 ) {
@@ -232,7 +235,7 @@ while ($row=@mysql_fetch_array($result)) {
 	for ( $k=3 ; $k<=10 ; $k++) {
 	  	if ( $VALUE == $k ) $selected="selected";
 	  	else $selected='';
-  		echo "<option value='$k' $selected>$k échecs</option>";
+  		echo "<option value='$k' $selected>$k ï¿½checs</option>";
   	}
   	echo "</select>";
   }
@@ -252,7 +255,7 @@ echo "</div>";
 
 echo "<div align=center>";
 echo " <input type=submit value='retour accueil' onclick='redirect();'>";
-echo " <input type=submit value='base de données' onclick='dbcfg();'>";
+echo " <input type=submit value='base de donnï¿½es' onclick='dbcfg();'>";
 echo " <input type=submit value='phpinfo' onclick='window.open(\"phpinfo.php\");'>";
 echo "</div>";
 
@@ -263,10 +266,10 @@ else
  	
 echo "<div align=left>
 <ul>
-<li>Le logo peut être personnalisé: placer un fichier <b>logo.jpg</b>dans le répertoire images/user-specific. <img src=".$logo." height=25 title='logo actuel'>
-<li>De même la bannière de la page d'accueil peut être personnalisée. Placer un fichier <b>banniere.jpg</b> dans le répertoire images/user-specific.
-<li>Le logo iPhone peut être personnalisé aussi (à la racine du site) <b>apple-touch-icon.png</b> <img src=apple-touch-icon.png width=16 title='icone iPhone actuelle'>
-<li>De même que le logo web (à la racine du site) <b>favicon.ico</b> <img src=favicon.ico width=12 title='icone actuelle'>
+<li>Le logo peut &ecirc;tre personnalis&eacute;: placer un fichier <b>logo.jpg</b>dans le r&eacute;pertoire images/user-specific. <img src=".$logo." height=25 title='logo actuel'>
+<li>De m&ecirc;me la banni&egrave;re de la page d'accueil peut &ecirc;tre personnalis&eacute;e. Placer un fichier <b>banniere.jpg</b> dans le r&eacute;pertoire images/user-specific.
+<li>Le logo iPhone peut &ecirc;tre personnalis&eacute;aussi (&agrave; la racine du site) <b>apple-touch-icon.png</b> <img src=apple-touch-icon.png width=16 title='icone iPhone actuelle'>
+<li>De m&ecirc;me que le logo web (&agrave; la racine du site) <b>favicon.ico</b> <img src=favicon.ico width=12 title='icone actuelle'>
 </font>
 </ul>";
 echo "</div>";

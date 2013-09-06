@@ -19,7 +19,7 @@
   # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 //=====================================================================
-// affiche les différents messages
+// affiche les diffï¿½rents messages
 //=====================================================================
 
 function write_msgbox($type, $image, $message, $top, $left, $width=400) {
@@ -48,7 +48,7 @@ echo "</div>";
 
 function param_error_msg(){
  	global $error_pic;
- 	write_msgbox("Erreur de paramètres",$error_pic,"<p>Les paramètres fournis à la page sont incorrects<p><input type=submit value='retour' onclick='javascript:history.back(1);'></p>",30,30);
+ 	write_msgbox("Erreur de paramï¿½tres",$error_pic,"<p>Les paramï¿½tres fournis ï¿½ la page sont incorrects<p><input type=submit value='retour' onclick='javascript:history.back(1);'></p>",30,30);
  
 }
 
@@ -270,7 +270,7 @@ function get_session_parameters(){
    		$typecompany='ALL';
 	}
 	
-	// type matériel
+	// type matï¿½riel
 	if (isset ($_GET["type"])) {
 	    $type=mysql_real_escape_string($_GET["type"]);
    		$_SESSION['type'] = $type;
@@ -294,7 +294,7 @@ function get_session_parameters(){
    		$catmessage='amicale';
 	}
 	
-	// categorie matériel, utilisé dans page paramétrage
+	// categorie matï¿½riel, utilisï¿½ dans page paramï¿½trage
 	if (isset ($_GET["catmateriel"])) {
 	    $catmateriel=mysql_real_escape_string($_GET["catmateriel"]);
    		$_SESSION['catmateriel'] = $catmateriel;
@@ -435,14 +435,14 @@ function choice_section_order($page) {
 					   width:220px;
 					   height:85px;
 					   padding: 5px;'>
-				<b>Choix de l'ordre des sections<br>dans la liste déroulante:</b><br>";
+				<b>Choix de l'ordre des sections<br>dans la liste dï¿½roulante:</b><br>";
 	if ( $sectionorder == 'alphabetique') $checked1='checked';
 	else $checked1='';
-	$html .= "<label>Alphabétique <input id='sectionorder' name='sectionorder' type='radio' value='alphabetique' 
+	$html .= "<label>Alphabï¿½tique <input id='sectionorder' name='sectionorder' type='radio' value='alphabetique' 
 				onclick=\"changeSectionOrder('".$page."','alphabetique')\"; $checked1 /></label>"; 
 	if ( $sectionorder == 'hierarchique') $checked1='checked';
 	else $checked1='';
-	$html .= "<label>Hiérarchique <input id='sectionorder' name='sectionorder' type='radio' value='hierarchique' 
+	$html .= "<label>Hiï¿½rarchique <input id='sectionorder' name='sectionorder' type='radio' value='hierarchique' 
 				onclick=\"changeSectionOrder('".$page."','hierarchique')\"; $checked1 /></label>
 				<br>
 		  		<div align=center><a onmouseover=\"HideContent('divsectionorder'); return true;\"
@@ -479,7 +479,7 @@ du ".$EH_DATE_DEBUT." au ".$EH_DATE_FIN." (".$EH_DEBUT."-".$EH_FIN."), ";
 }
 
 //=====================================================================
-// nombre d'inscrits avec une compétence valide
+// nombre d'inscrits avec une compï¿½tence valide
 //=====================================================================
 function get_nb_competences($evenement,$partie,$poste=0) {
  	$evts=get_event_and_renforts($evenement,$exclude_canceled_r=true);
@@ -503,7 +503,7 @@ function get_nb_competences($evenement,$partie,$poste=0) {
 }
 
 //=====================================================================
-// afficher la liste des codes événements
+// afficher la liste des codes ï¿½vï¿½nements
 //=====================================================================
 
 function get_event_and_renforts($evenement,$exclude_canceled_r=true) {
@@ -524,7 +524,7 @@ function get_event_and_renforts($evenement,$exclude_canceled_r=true) {
 //=====================================================================
 function fixcharset($string) {
     return strtr($string, 
-          'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
+          'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 
           'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
 }
 //=====================================================================
@@ -553,7 +553,7 @@ function is_iphone() {
 }
 
 //=====================================================================
-// dates d'expiration des compétences
+// dates d'expiration des compï¿½tences
 //=====================================================================
 function datesExpiration($nbmonthes,$default,$yearstart=null) {
  	$month=1;
@@ -706,7 +706,7 @@ function mysendmail($ids,$fromid,$Subject,$Mailcontent){
    }
    $m =  count($T);
    if ( $mymailmaxdest == 1 ) {
-      $Mailcontent .= "\n(Cet email a été envoyé à ".$m." destinataire[s].)";
+      $Mailcontent .= "\n(Cet email a ï¿½tï¿½ envoyï¿½ ï¿½ ".$m." destinataire[s].)";
    }
    $j = 0; $ret = 0;
    for($i=0; $i < $m ; $i++){
@@ -744,7 +744,7 @@ function mysubsendmail($MailTo,$Subject,$Mailcontent,$SenderName,$SenderMail,$nb
 		$header .= "MIME-Version: 1.0\r\n";
 		$header .= "Content-Type: text/plain; charset=iso-8859-1\r\n";
     	if( mail("$MailTo", "$Subject", "$Mailcontent", "$header") ){
-            return $nb; // nb emails envoyés  
+            return $nb; // nb emails envoyï¿½s  
     	}else{
             return 0;
     	}
@@ -854,7 +854,7 @@ function display_children0($parent, $level, $max, $expand, $order='hierarchique'
 		     ( <a href=personnel.php?category=interne&order=P_NOM&filter=".$S_ID."&subsections=1 
 			  title=\"personnel de la section ".$S_DESCRIPTION."\">".$p."</a> - 
 			  <a href=vehicule.php?order=TV_USAGE&filter=".$S_ID."&filter2=ALL&subsections=1 
-			  title=\"véhicules de la section ".$S_DESCRIPTION."\">".$v."</a> )<br>";
+			  title=\"vï¿½hicules de la section ".$S_DESCRIPTION."\">".$v."</a> )<br>";
        // call this function again to display this 
        // child's children 
        $i++;
@@ -908,7 +908,7 @@ function display_children0($parent, $level, $max, $expand, $order='hierarchique'
 		     ( <a href=personnel.php?category=interne&order=P_NOM&filter=".$S_ID."&subsections=1 
 			  title=\"personnel de la section ".$S_DESCRIPTION."\">".$p."</a> - 
 			  <a href=vehicule.php?order=TV_USAGE&filter=".$S_ID."&filter2=ALL&subsections=1 
-			  title=\"véhicules de la section ".$S_DESCRIPTION."\">".$v."</a> )<br>";
+			  title=\"vï¿½hicules de la section ".$S_DESCRIPTION."\">".$v."</a> )<br>";
      }
   }
 } 
@@ -1037,7 +1037,7 @@ function companychoice($section,$suggestedcompany,$includeparticulier=true,$cate
 		if ( $suggestedcompany == 0 ) $selected='selected';
 		else $selected ='';
 		if ( $category  == 'EXT' ) $u='Particulier';
-		else $u='Non précisé';
+		else $u='Non prï¿½cisï¿½';
 		$selectbox .= "<option value='0' $selected >... ".$u." ...</option>";
 	}
 	while ($row=@mysql_fetch_array($result)) {
@@ -1132,7 +1132,7 @@ function get_level($section) {
 //=====================================================================
 
 function moislettres($month){
- $mois=array("janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre");
+ $mois=array("janvier","fï¿½vrier","mars","avril","mai","juin","juillet","aoï¿½t","septembre","octobre","novembre","dï¿½cembre");
  return $mois[$month - 1];
 }
 
@@ -1169,7 +1169,7 @@ function get_nb_equipes() {
 }
 
 //=====================================================================
-// combien y a t'il d'engagements pour la période
+// combien y a t'il d'engagements pour la pï¿½riode
 //=====================================================================
 function get_nb_inscriptions($P_ID, $year1, $month1, $day1,$year2, $month2, $day2 ) {
 	// retourne le nombre d'inscriptions de la personne sur la plage de dates
@@ -1197,7 +1197,7 @@ function get_nb_inscriptions($P_ID, $year1, $month1, $day1,$year2, $month2, $day
 }
 
 function get_nb_engagements( $type, $ID, $year1, $month1, $day1,$year2, $month2, $day2 ) {
-	// retourne le nombre d'engagements du véhicule (V) ou matériel (M) sur la plage de dates
+	// retourne le nombre d'engagements du vï¿½hicule (V) ou matï¿½riel (M) sur la plage de dates
 	if ( $type == 'V' ) 
 	$query="select count(1) as NB from 
 			evenement_vehicule ev, evenement e, evenement_horaire eh
@@ -1232,7 +1232,7 @@ function get_nb_engagements( $type, $ID, $year1, $month1, $day1,$year2, $month2,
 }
 
 //=====================================================================
-// est ce qu'un pompier donné a des disponibilités sur un période?
+// est ce qu'un pompier donnï¿½ a des disponibilitï¿½s sur un pï¿½riode?
 //=====================================================================
 function is_dispo($P_ID,$year1, $month1, $day1,$year2, $month2, $day2) {
 	 $query="select count(*) as NB from disponibilite where P_ID =".$P_ID."
@@ -1255,7 +1255,7 @@ function is_dispo($P_ID,$year1, $month1, $day1,$year2, $month2, $day2) {
 }
 
 //=====================================================================
-// affiche le personnel disponible pour la période J, N ou A (J+N)
+// affiche le personnel disponible pour la pï¿½riode J, N ou A (J+N)
 //=====================================================================
 function personnel_dispo($year, $month, $day, $type, $poste, $section) {
 	global $nbsections;
@@ -1346,7 +1346,7 @@ function personnel_dispo_ou_non($poste, $section) {
 }
 
 //=====================================================================
-// compte le personnel disponible pour la période J, N 
+// compte le personnel disponible pour la pï¿½riode J, N 
 //=====================================================================
 function count_personnel_dispo($year, $month, $day, $type, $section) {
     $query="select count(*) as NB from pompier p, disponibilite d
@@ -1364,7 +1364,7 @@ function count_personnel_dispo($year, $month, $day, $type, $section) {
 
 	
 //=====================================================================
-// affiche date française au format "lundi 1er" ...
+// affiche date franï¿½aise au format "lundi 1er" ...
 //=====================================================================
 
 function date_fran($month, $i ,$year) {
@@ -1377,12 +1377,12 @@ function date_fran($month, $i ,$year) {
 	
 }
 function date_fran_mois($month){
-$mois=array("janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","decembre");
+$mois=array("janvier","fï¿½vrier","mars","avril","mai","juin","juillet","aoï¿½t","septembre","octobre","novembre","decembre");
 $moisnum=array("01","02","03","04","05","06","07","08","09","10","11","12");
 return str_replace($moisnum,$mois,$month);
 }
 //=====================================================================
-// datediff (n'existe pas en mysql 4.0 retourne la différence en jours
+// datediff (n'existe pas en mysql 4.0 retourne la diffï¿½rence en jours
 //=====================================================================
 
 function getnow() {
@@ -1414,7 +1414,7 @@ function check_ebrigade() {
 }
 
 //=====================================================================
-// datediff (n'existe pas en mysql 4.0 retourne la différence en jours
+// datediff (n'existe pas en mysql 4.0 retourne la diffï¿½rence en jours
 //=====================================================================
 
 function my_date_diff($date1,$date2) {
@@ -1426,7 +1426,7 @@ function my_date_diff($date1,$date2) {
 }
 
 //=====================================================================
-//prénoms, premières lettres en majuscule
+//prï¿½noms, premiï¿½res lettres en majuscule
 //=====================================================================
 
 function my_ucfirst($str) {
@@ -1585,7 +1585,7 @@ function is_chef($pid, $section) {
 	 return false;
 }
 
-// fonction utilisée pour protection civile
+// fonction utilisï¿½e pour protection civile
 function is_formateur($pid) {
  	 $query="select count(*) as NB from qualification q, poste p
 	  	     where q.P_ID=$pid
@@ -1596,7 +1596,7 @@ function is_formateur($pid) {
 	 return $row["NB"];
 }
 
-// fonction utilisée pour protection civile
+// fonction utilisï¿½e pour protection civile
 function get_formateurs($section) {
   	 $liste="";
  	 $query="select distinct q.P_ID
@@ -1614,7 +1614,7 @@ function get_formateurs($section) {
 }
 
 //=====================================================================
-// classe gestion des entités
+// classe gestion des entitï¿½s
 //=====================================================================
 
 function get_section_code($id) {
@@ -1916,15 +1916,15 @@ function get_statut ($id) {
 }
 
 //=====================================================================
-// write config base de données
+// write config base de donnï¿½es
 //=====================================================================
 
 function write_db_config ($mysqlserver,$mysqluser,$mysqlpassword,$database) {
   global $config_file;
   if ( is_file ($config_file)) unlink($config_file);
   $fh = fopen($config_file, 'w') or die (
-	"<font color=red><b>Impossible d'écrire le fichier $config_file.
-	<br> Vérifier les permissions sur le filesystem<br>
+	"<font color=red><b>Impossible d'ï¿½crire le fichier $config_file.
+	<br> Vï¿½rifier les permissions sur le filesystem<br>
 	<a href=\"javascript:history.back(1)\">Retour</a>");
 
   fwrite($fh,"<?php".chr(10));
@@ -1940,7 +1940,7 @@ function write_db_config ($mysqlserver,$mysqluser,$mysqlpassword,$database) {
 }
 
 //=====================================================================
-// connexion base de données
+// connexion base de donnï¿½es
 //=====================================================================
 
 function connect () {
@@ -1955,7 +1955,7 @@ function connect () {
 }
 
 //=====================================================================
-// maintenance de la base de données
+// maintenance de la base de donnï¿½es
 //=====================================================================
 
 function database_maintenance () {
@@ -2010,7 +2010,7 @@ function database_maintenance () {
 
 
 //=====================================================================
-// déconnexion base de données
+// dï¿½connexion base de donnï¿½es
 //=====================================================================
 
 function disconnect () {
@@ -2018,7 +2018,7 @@ function disconnect () {
 }
 
 //=====================================================================
-// trouver le nombre de sessions d'un événement
+// trouver le nombre de sessions d'un ï¿½vï¿½nement
 //=====================================================================
 
 function get_nb_sessions($event) {
@@ -2108,7 +2108,7 @@ function check_rights($id, $fonctionnalite, $section="undef"){
 		}
 	 }
   }
-  // CAS 3 : restriction des permissions pour fonctionnalités avec F_FLAG = 1
+  // CAS 3 : restriction des permissions pour fonctionnalitï¿½s avec F_FLAG = 1
   if (( $nbsections == 0 ) and ( $granted > 0 )) {
       if (get_func_flag($_f) == 1 ) {
          $_g=get_highest_section_where_granted($_i, $_f);
@@ -2118,7 +2118,7 @@ function check_rights($id, $fonctionnalite, $section="undef"){
       }
   }
   if (( $granted == 0 ) && ( $_nb > 0 )) {
-  	// CAS 4 : habilitation 24 (permissions extérieures)+ $_f : return true
+  	// CAS 4 : habilitation 24 (permissions extï¿½rieures)+ $_f : return true
   	$query="select count(*) as NB from
 	 		 habilitation h, pompier p
 			 where (h.GP_ID = p.GP_ID or h.GP_ID = p.GP_ID2)
@@ -2148,8 +2148,8 @@ function get_func_flag($fonctionnalite){
 // get permission location
 //=====================================================================
 
-// retourne la section la plus élevée dans l'organigramme où 
-// les permissions sur une fonctionnalité sont données à une personne
+// retourne la section la plus ï¿½levï¿½e dans l'organigramme oï¿½ 
+// les permissions sur une fonctionnalitï¿½ sont donnï¿½es ï¿½ une personne
 function get_highest_section_where_granted($id, $fonctionnalite){
  		$_i=intval($id);
   		$_f=intval($fonctionnalite);
@@ -2390,6 +2390,38 @@ function sendSMS_4($to, $message){
 	return $status_code;
 } 
 
+//=====================================================================
+// SMS SMSMode	
+//=====================================================================
+
+function sendSMS_5($to,$message){
+    global $sms_user, $sms_password;
+    $ch = curl_init();
+    $url = 'https://api.smsmode.com/http/1.6/sendSMS.do';
+    $url = $url . '?pseudo='.$sms_user.'&pass='.$sms_password.'&message='.$message.'&numero='.$to;
+    //echo $url;
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $response_string = curl_exec($ch);
+    curl_close($ch);
+    //echo $response_string;
+    return $response_string;
+} 
+
+function getSMSCredit_5(){ 
+	$url="https://api.smsmode.com/http/1.6/credit.do";
+	global $sms_user, $sms_password;
+        //echo $sms_password;
+        $ch = curl_init();
+	$url = $url.'?pseudo='.$sms_user.'&pass='.$sms_password;
+        //echo $url;
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response_string = curl_exec($ch);
+        curl_close($ch);
+        
+        return $response_string;
+}
 
 //=====================================================================
 // fonction d'enregistrement personnel_fromation
@@ -2476,7 +2508,7 @@ function get_file_to_version($file) {
 }
 
 //=====================================================================
-// récupérer les informations de session et tester la sécu
+// rï¿½cupï¿½rer les informations de session et tester la sï¿½cu
 //=====================================================================
 function check_all($fonctionnalite, $page="") {
 	 global $error_pic,$error_4,$error_pic,$miniquestion_pic,$error_6,$basedir,$identpage;
@@ -2503,13 +2535,13 @@ function check_all($fonctionnalite, $page="") {
             write_msgbox("erreur permission",$error_pic,$error_6 ." <br><i>".$FONC."</i> <a href=".$basedir."/habilitations.php target=_blank>".$miniquestion_pic."</a><p> <a href=\"javascript:history.back(1)\">Retour</a>",30,30);
    	    	exit;
 	 }
-	 // mise à jour table audit
+	 // mise ï¿½ jour table audit
 	 $query="update audit set A_FIN =NOW(), A_LAST_PAGE=\"".$page."\" where P_ID=".$_SESSION['id']." and A_DEBUT >='".$_SESSION['SES_DEBUT']."'";
 	 $result=mysql_query($query);	
 }
 
 //=====================================================================
-//DEB  mise en page par défaut des tableaux
+//DEB  mise en page par dï¿½faut des tableaux
 //=====================================================================
 function EbDeb($titre=""){
 $out = "<table>
@@ -2561,7 +2593,7 @@ where e_id = '$id'";
 				$factDate=$day.'/'.$month.'/'.$year;
 				if(checkdate($month,$day,$year)){
 				    $factStatutCode = 'facture';
-					$factureStatut = "Facture émise le $factDate";
+					$factureStatut = "Facture ï¿½mise le $factDate";
 					$styleEvt="background-color:orange;color:black;";
 					$factureStatutIco="<img src=\"images/f_orange.gif\" border=\"0\" alt=\"\" title=\"$factureStatut\">";
 				}else{
@@ -2589,7 +2621,7 @@ where e_id = '$id'";
 				$paiementDate=$day.'/'.$month.'/'.$year;
 				if(checkdate($month,$day,$year)){
 				    $factStatutCode = 'paiement';
-					$factureStatut = "Paiement enregistré...";
+					$factureStatut = "Paiement enregistrï¿½...";
 					$styleEvt="background-color:white;color:grey;";
 					$factureStatutIco="<img src=\"images/f_white.gif\" border=\"0\" alt=\"\" title=\"$factureStatut\">";
 				}else{
@@ -2618,14 +2650,14 @@ where e_id = '$id'";
 }
 
 # =======================================
-# Utilisé dans :
+# Utilisï¿½ dans :
 # dps.php / dps_calc.php / dps_save.php
 # =======================================
 function pair($nombre){
 return (($nombre-1)%2);
 };
 
-function CalcRIS($P1=1500,$P2=0.25,$E1=0.25,$E2=0.25,$NbISActeurs=0,$NbISActeursCom="Pas de demande spécifique pour les acteurs",$sortie='echo'){
+function CalcRIS($P1=1500,$P2=0.25,$E1=0.25,$E2=0.25,$NbISActeurs=0,$NbISActeursCom="Pas de demande spï¿½cifique pour les acteurs",$sortie='echo'){
 $out = array();
 $out['dimNbISActeursCom']=$NbISActeursCom;
 $out['dimNbISActeurs']=$NbISActeurs;
@@ -2662,7 +2694,7 @@ $out['type'] = "DPS-GE";
 
 if ($RIS<=36){
 $out['type'] = "DPS-ME";
-$out['commentaire'] ="Composé de 2 à  3 postes de secours au maximum\nAjouter aux intervenants: \n1 chef de secteur \n2 LAT au minimum.";
+$out['commentaire'] ="Composï¿½ de 2 ï¿½ 3 postes de secours au maximum\nAjouter aux intervenants: \n1 chef de secteur \n2 LAT au minimum.";
 $nbPersEncadrement  = 3;
 }
 if ($RIS<=12){
@@ -2675,18 +2707,18 @@ if($RIS<=4){
   }
   if($RIS>1.125){
     $out['NbIS'] = 4;
-	$out['commentaire'] ="1.125 < RIS < 4 \n4 intervenants secouristes \n(Nb mini pour 1 équipe)";
+	$out['commentaire'] ="1.125 < RIS < 4 \n4 intervenants secouristes \n(Nb mini pour 1 ï¿½quipe)";
   }
 }
 }
 if ($RIS<=1.125){
 $out['type'] = "PAPS";
 $out['NbIS'] = 2;
-$out['commentaire'] ="Rq : Dans le cas où les acteurs présenteraient un risque différent du public, et en absence d'un dispositif spécifique pour les acteurs, le PAPS n'est pas un dispositif de secours suffisant.";
+$out['commentaire'] ="Rq : Dans le cas oï¿½ les acteurs prï¿½senteraient un risque diffï¿½rent du public, et en absence d'un dispositif spï¿½cifique pour les acteurs, le PAPS n'est pas un dispositif de secours suffisant.";
 if($E2==0.4){
 $out['type'] = "DPS-PE";
 $out['NbIS'] = 4;
-$out['commentaire'] ="Secours publics à  plus de 30 mn > DPS-PE";
+$out['commentaire'] ="Secours publics ï¿½ plus de 30 mn > DPS-PE";
 }
 }
 $out['RIS'] = $RIS;
@@ -2720,8 +2752,8 @@ $out['binomes']=0;
 $out['effectif']= $nbPersEncadrement + floor($out['NbIS']) +  + floor($out['dimNbISActeurs']);
 
 if ($RIS<=0.25){
-$out['type'] = "cf. autorité compétente";
-$out['commentaire'] ="Pas de dispositif minimal prévu \n\nVoir l'autorité compétente";
+$out['type'] = "cf. autoritï¿½ compï¿½tente";
+$out['commentaire'] ="Pas de dispositif minimal prï¿½vu \n\nVoir l'autoritï¿½ compï¿½tente";
 $out['NbIS'] = 0;
 $out['postes'] = 0 ;
 $out['equipes'] = 0;
@@ -2745,7 +2777,7 @@ $retour .= "<p>".preg_replace("/\n/","<br>",$out['commentaire'])."</p>";
 $retour .= "<p>Nombre d'intervenants secouristes = ".$out['NbIS']."</p>";
 $retour .= "<p><b>Effectif global = ".$out['effectif']."</b></p>";
 $retour .= "<fieldset>";
-$retour .= "<legend>Exemple de répartition pour le public</legend>";
+$retour .= "<legend>Exemple de rï¿½partition pour le public</legend>";
 //$retour .= ($out['secteurs']>1?"<br />1 Chef de poste":"");
 $retour .= "<ul>";
 $retour .= ($out['secteurs']>0?"<li>".$out['secteurs']." secteur".($out['secteurs']>1?"s":"")."</li>":"");
@@ -2765,7 +2797,7 @@ $sql = "select dimP1,dimP2,dimE1,dimE2,dimNbISActeurs,dimNbISActeursCom
 from evenement_facturation 
 where e_id='$evenement'";
 $res = mysql_query($sql);
-//echo "Nb de réponses ".mysql_num_rows($res);
+//echo "Nb de rï¿½ponses ".mysql_num_rows($res);
 if(mysql_num_rows($res)>0){
 while($row= mysql_fetch_array($res)){
 $P1 = $row['dimP1'];
@@ -2863,7 +2895,7 @@ $res = mysql_query($sql);
 $msgerr .= (mysql_error()>0?"<p>$sql<br />".mysql_error()."</p>":"");
 }
 echo(($msgerr!="")?$msgerr:"<p class=\"commentaire\">Dimensionnement enregistr&eacute;
-<br>Il faut prévoir ".$evt['effectif']." personnes au total.
+<br>Il faut prï¿½voir ".$evt['effectif']." personnes au total.
 <ul>
 <li>Pour les acteurs : ".$evt['dimNbISActeurs']."</li>
 <li>Pour le public : ".$evt['NbIS']."</li>
@@ -2911,7 +2943,7 @@ function display_post_get() {
 // End of display_post_get
 
 //=====================================================================
-// afficher les numéros de téléphone de manière lisible
+// afficher les numï¿½ros de tï¿½lï¿½phone de maniï¿½re lisible
 //=====================================================================
 function clean_display_phone($nbr, $sep=false)
 {
