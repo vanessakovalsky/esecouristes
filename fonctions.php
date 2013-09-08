@@ -1755,6 +1755,14 @@ function get_phone($id) {
 	 return $row["P_PHONE"];	
 }
 
+function get_confidentialite($id) {
+        if ($id == '') return '';
+        $query = "SELECT P_HIDE FROM pompier WHERE P_ID=".$id;
+        $result = mysql_query($query);
+        $row = mysql_fetch_array($result);
+        return $row["P_HIDE"];
+}
+
 function get_sexe($id) {
   	 if ( $id == "" ) return "M";
 	 $query="select P_SEXE from pompier where P_ID=".$id;

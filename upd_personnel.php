@@ -206,7 +206,9 @@ echo "<body>";
 // lien tel iphone
 if (stristr($_SERVER['HTTP_USER_AGENT'], "iPhone")  || strpos($_SERVER['HTTP_USER_AGENT'], "iPod")) {  
  	$num=get_phone($pompier);
- 	if ( $num <> "" )
+        // On empêche d'afficher le lien si la case Masquer au public est cochée.
+        $confidentialite = get_confidentialite($pompier);
+ 	if ( $num <> "" && $confidentialite == '0' )
 	 	$iphonelink="<a href='tel:".$num."'><img src=images/it_phone.png border=0></a> <a href='sms:".$num."'><img src=images/sms2.png border=0></a>";
 }
 else $iphonelink="";
