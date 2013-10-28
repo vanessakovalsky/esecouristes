@@ -1132,7 +1132,7 @@ function get_level($section) {
 //=====================================================================
 
 function moislettres($month){
- $mois=array("janvier","f�vrier","mars","avril","mai","juin","juillet","ao�t","septembre","octobre","novembre","d�cembre");
+ $mois=array("janvier","f�vrier","mars","avril","mai","juin","juillet","ao&ucirc;t","septembre","octobre","novembre","d&eacute;cembre");
  return $mois[$month - 1];
 }
 
