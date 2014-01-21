@@ -34,7 +34,7 @@ function redirect(url) {
 }
 
 function suppress(id) {
-  if ( confirm("Voulez vous vraiment supprimer ce matériel?")) {
+  if ( confirm("Voulez vous vraiment supprimer ce matï¿½riel?")) {
      url="del_materiel.php?MA_ID="+id;
      self.location.href=url;
   }
@@ -90,10 +90,9 @@ else {
 }
 if ( $V_ID == 0 ) $V_ID='null'; 
 if ( $MA_PARENT == 0 ) $MA_PARENT='null';
-
 // verifier les permissions de modification
 if (! check_rights($_SESSION['id'], 17,"$S_ID")) {
- check_all(24);
+    check_all(24);
 }
 if ( $MA_EXTERNE == 1 ) check_all(24);
 
@@ -161,13 +160,13 @@ if ( $operation == 'update' ) {
 	$query="select TM_LOT from type_materiel where TM_ID=$TM_ID";
 	$result=mysql_query($query); 
 	$row=@mysql_fetch_array($result);
-	// si lot de matériel, ne peut pas être inclus dans un lot (éviter les hiérarchies)
+	// si lot de matï¿½riel, ne peut pas ï¿½tre inclus dans un lot (ï¿½viter les hiï¿½rarchies)
 	//if ( $row[0] == 1 ) {
         //$query="update materiel set MA_PARENT=null where MA_ID=".$MA_ID; 
         //$result=mysql_query($query);
 	//}
 	
-	// si plus lot, enlever les pièces de matériel attachées
+	// si plus lot, enlever les piï¿½ces de matï¿½riel attachï¿½es
 	//else
 	 if ( $row['TM_LOT'] == 0 ){
 	    $query="update materiel set MA_PARENT=null where MA_PARENT=".$MA_ID; 
@@ -175,7 +174,7 @@ if ( $operation == 'update' ) {
 	}	
 	
 	if (!empty($MA_PARENT)) {
-	// Si le matériel n'est plus opérationnel, le lot non plus'
+	// Si le matï¿½riel n'est plus opï¿½rationnel, le lot non plus'
 		$query_update_operationnel="update materiel set VP_ID='".$VP_ID."' WHERE MA_ID=".$MA_PARENT;
 		$result_update_operationnel=mysql_query($query_update_operationnel) or die ("MySQL ERROR: ".mysql_error());
 	}

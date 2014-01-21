@@ -61,7 +61,7 @@ $MA_ID=intval($_GET["MA_ID"]);
 //echo "l'id du materiel est : ".$MA_ID;
 
 //=====================================================================
-// selectionne le bon matériel
+// selectionne le bon matï¿½riel
 //=====================================================================
 
 $query="SELECT MA_ID , S_ID
@@ -73,8 +73,8 @@ $row=mysql_fetch_array($result);
 $MA_ID=$row["MA_ID"];
 $S_ID=$row["S_ID"];
 
-// permettre les modifications si je suis habilité sur la fonctionnalité 17 au bon niveau
-// ou je suis habilité sur la fonctionnalité 24 )
+// permettre les modifications si je suis habilitï¿½ sur la fonctionnalitï¿½ 17 au bon niveau
+// ou je suis habilitï¿½ sur la fonctionnalitï¿½ 24 )
 if (check_rights($_SESSION['id'], 17,"$S_ID")) $responsable_materiel=true;
 else $responsable_materiel=false;
 
@@ -86,7 +86,7 @@ if ( $MA_EXTERNE == '1' ) {
 	else $disabled='disabled';
 }
 
-// Début du formulaire
+// Dï¿½but du formulaire
 
 echo "<form name='materiel_controle' action='materiel_controle_save.php'>";
 
@@ -100,12 +100,12 @@ echo "<p><TABLE>
 
 echo "<table cellspacing=0 border=0>";
 echo "<tr>
-      	  <td class=TabHeader colspan=2>informations matériel</td>
+      	  <td class=TabHeader colspan=2>informations mat&eacute;eriel</td>
       </tr>";
 
 
 //=====================================================================
-// ligne type de contrôle
+// ligne type de contrï¿½le
 //=====================================================================
 
 echo "<tr>
@@ -134,7 +134,7 @@ $query2="select VP_LIBELLE, VP_ID, VP_OPERATIONNEL
 $result2=mysql_query($query2);
 
 echo "<tr>
-      	  <td bgcolor=$mylightcolor ><font color=$opcolor><b>Position du matériel</b> <font color=red>*</font></font></td>
+      	  <td bgcolor=$mylightcolor ><font color=$opcolor><b>Position du mat&eacute;riel</b> <font color=red>*</font></font></td>
       	  <td bgcolor=$mylightcolor align=left>
 		<select name='VP_ID' $disabled>";
 		     while ($row2=@mysql_fetch_array($result2)) {
@@ -152,12 +152,12 @@ echo " </td>
 if ( $VP_OPERATIONNEL < 0 ) {
 	if ( $MA_UPDATE_DATE <> "" )
 		echo "<tr> 
-              <td bgcolor=$mylightcolor align=right><i>Modifié le: </i></td> 
+              <td bgcolor=$mylightcolor align=right><i>ModifiÃ© le: </i></td> 
               <td bgcolor=$mylightcolor align=left> ".$MA_UPDATE_DATE."</td> 
               </tr>"; 
        if ( $MA_UPDATE_BY <> "") 
        echo "<tr> 
-              <td bgcolor=$mylightcolor align=right><i>Modifié par: </i></td> 
+              <td bgcolor=$mylightcolor align=right><i>Modifiï¿½ par: </i></td> 
               <td bgcolor=$mylightcolor align=left> 
                             <a href=upd_personnel.php?pompier=$MA_UPDATE_BY > 
                             ".ucfirst(get_prenom($MA_UPDATE_BY))." ".strtoupper(get_nom($MA_UPDATE_BY))."</a></td> 
@@ -175,19 +175,19 @@ echo " </td>
       </tr>";
 	  
 //=====================================================================
-// dates de prochain contrôle
+// dates de prochain contrï¿½le
 //=====================================================================
 
 // date
 echo "<tr>
-      	  <td bgcolor=$mylightcolor ><font color=$revision><b>Date du contrôle</b></font></td>
+      	  <td bgcolor=$mylightcolor ><font color=$revision><b>Date du contr&ocirc;le</b></font></td>
       	  <td bgcolor=$mylightcolor align=left>";
 
 echo "<input class='plain' name='MAC_CONTROLE_DATE' value='".getnow()."'>";
 
  
 //=====================================================================
-// personne ayant effectuer le contrôle
+// personne ayant effectuer le contrï¿½le
 //=====================================================================
 
 $query2="select p.P_ID, p.P_PRENOM, p.P_NOM , s.S_CODE
@@ -200,7 +200,7 @@ $query2="select p.P_ID, p.P_PRENOM, p.P_NOM , s.S_CODE
 $result2=mysql_query($query2);
 
 echo "<tr >
-      	  <td bgcolor=$mylightcolor ><b>Personne ayant effectué le contrôle ".$warning."</b></td>
+      	  <td bgcolor=$mylightcolor ><b>Personne ayant effectu&eacute; le contr&ocirc;le ".$warning."</b></td>
       	  <td bgcolor=$mylightcolor align=left>";		
    echo "<select id='CONTROLED_BY' name='CONTROLED_BY' $disabled>";
    echo "<option value='".$id."' $selected>".my_ucfirst(get_prenom($id))." ".my_ucfirst(get_nom($id))."</option>\n";
@@ -217,6 +217,7 @@ echo "<tr >
    }
 echo "</select>";
 echo "</td></tr>";
+echo "<input type='hidden' name='section' value='$S_ID'>";
 echo "<input type='hidden' name='MA_ID' value='$MA_ID'>";
 
 echo "</table></tr></table>";

@@ -24,6 +24,7 @@ include_once ("config.php");
 check_all(17);
 $id=$_SESSION['id'];
 $section=$_SESSION['SES_SECTION'];
+$S_ID = $_GET['section'];
 ?>
 
 <html>
@@ -41,15 +42,23 @@ include_once ("config.php");
 
 $MAC_COMMENT=STR_replace("\"","",$_GET["MAC_COMMENT"]);
 $MA_ID=intval($_GET["MA_ID"]);
-echo "l'id du materiel est".$MA_ID;
+//echo "l'id du materiel est".$MA_ID;
+echo "l id de la section est ".$S_ID;
 $MAC_COMMENT=mysql_real_escape_string($MAC_COMMENT);
 $MAC_CONTROLE_DATE=mysql_real_escape_string($_GET["MAC_CONTROLE_DATE"]);
 $CONTROLED_BY=($_GET["CONTROLED_BY"]);
 $MAC_TYPE=($_GET["MAC_TYPE"]);
 
 // verifier les permissions de modification
-if (! check_rights($_SESSION['id'], 17,"$S_ID")) {
- check_all(24);
+if (check_rights($id, 17,"$S_ID")) {
+ echo "ca passe";
+}
+
+
+
+if (! check_rights($id, 17,"$S_ID")) {
+  echo "passe pas";
+    check_all(24);
 }
 
 $tmp=explode ("-",$MAC_CONTROLE_DATE); $month1=$tmp[1]; $day1=$tmp[0]; $year1=$tmp[2];
@@ -57,7 +66,7 @@ $MAC_CONTROLE_DATE = "\"".$year1."-".$month1."-".$day1."\"";
 
 
 //=====================================================================
-// insertion nouvelle fiche de contrôle
+// insertion nouvelle fiche de contrï¿½le
 //=====================================================================
 
 $query="insert into materiel_controle 

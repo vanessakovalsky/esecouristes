@@ -891,7 +891,7 @@ else echo "<input type='hidden' name='convention' value=''>";
 
 if ( $nbsections == 0 ) {
 	echo "<tr $style2>
-      	  <td bgcolor=$mylightcolor ><b>Nombre de VPSP pr�vus</b></td>
+      	  <td bgcolor=$mylightcolor ><b>Nombre de VPSP pr&eacute;vus</b></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2><input type='text' name='nb_vpsp' size='20' value=\"$MYE_NB_VPSP\">";		
 	echo "</tr>";
 }
@@ -899,7 +899,7 @@ else echo "<input type='hidden' name='nb_vpsp' value=''>";
 
 if ( $nbsections == 0 ) {
 	echo "<tr $style2>
-      	  <td bgcolor=$mylightcolor ><b>Nombre d'autres v�hicules pr�vus</b></td>
+      	  <td bgcolor=$mylightcolor ><b>Nombre d'autres v&eacute;hicules pr&eacute;vus</b></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2><input type='text' name='nb_autres_vehicules' size='20' value=\"$MYE_NB_AUTRES_VEHICULES\">";		
 	echo "</tr>";
 }
@@ -912,14 +912,14 @@ else echo "<input type='hidden' name='nb_autres_vehicules' value=''>";
 	echo "</tr>";
 
 	echo "<tr $style2>
-      	  <td bgcolor=$mylightcolor ><b>Clause particuli�re</b></td>
+      	  <td bgcolor=$mylightcolor ><b>Clause particuli&egrave;re</b></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2>";
 	echo "<textarea name='clauses' id='clauses' cols='50' rows='3' style='FONT-SIZE: 10pt; FONT-FAMILY: Arial;' value=\"$MYE_CLAUSES\">".$MYE_CLAUSES."</textarea></td>";		
 	echo "</tr>";
 
 
 	echo "<tr $style2>
-      	  <td bgcolor=$mylightcolor ><b>Clause particuli�re 2</b></td>
+      	  <td bgcolor=$mylightcolor ><b>Clause particuli&egrave;re 2</b></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2>";
 	echo "<textarea name='clauses2' id='clauses2' cols='50' rows='3' style='FONT-SIZE: 10pt; FONT-FAMILY: Arial;' value=\"$MYE_CLAUSES2\">".$MYE_CLAUSES2."</textarea></td>";	
 	echo "</tr>";
@@ -944,7 +944,7 @@ else echo "<input type='hidden' name='repas' value=''>";
 
 if ( $nbsections == 0) {
 	echo "<tr $style2>
-		  <td bgcolor=$mylightcolor ><b> Transport assur� par l'association : </b></td>
+		  <td bgcolor=$mylightcolor ><b> Transport assur&eacute; par l'association : </b></td>
 		  <td bgcolor=$mylightcolor aligne=left colspan=2>";
 	echo "<select id='transport' name='transport'>";
 	echo "<option value='non'";
@@ -969,7 +969,7 @@ if ( $action <> 'create' ) {
 
 	echo "<tr>
       	  <td bgcolor=$mylightcolor>
-			<font size=1>Email ouverture envoy�</font></td>
+			<font size=1>Email ouverture envoy&eacute;</font></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2>
 			<input type='checkbox' name='mail1'  value='1' $checked></td>";		
 	echo "</tr>";
@@ -978,7 +978,7 @@ if ( $action <> 'create' ) {
 	else $checked="";
 	echo "<tr>
       	  <td bgcolor=$mylightcolor>
-			<font size=1 >Email cl�ture envoy�</font></td>
+			<font size=1 >Email cl&ocirc;ture envoy&eacute;</font></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2>
 			<input type='checkbox' name='mail2'  value='1' $checked></td>";		
 	echo "</tr>";
@@ -987,7 +987,7 @@ if ( $action <> 'create' ) {
 	else $checked="";
 	echo "<tr>
       	  <td bgcolor=$mylightcolor>
-			<font size=1 >Email annulation envoy�</font></td>
+			<font size=1 >Email annulation envoy&eacute;</font></td>
       	  <td bgcolor=$mylightcolor align=left colspan=2>
 			<input type='checkbox' name='mail3'  value='1' $checked></td>";		
 	echo "</tr>";
@@ -1002,8 +1002,8 @@ else {
 // lien renfort
 //=====================================================================
 
-// si l'�v�nement a d�j� des renforts, on ne peut pas le rattacher comme renfort
-// d'un autre �v�nement (�viter les renforts en cascade)
+// si l'événement a déjà des renforts, on ne peut pas le rattacher comme renfort
+// d'un autre évènement (éviter les renforts en cascade)
 if ( $nbsections == 0 ) {
 	$query="select count(*) as NB from evenement where E_PARENT=".$evenement;
 	$result=mysql_query($query);	

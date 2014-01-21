@@ -74,7 +74,7 @@ echo "
 <TD class='FondMenu' valign='top'><TABLE BORDER='0' CELLPADDING='0' CELLSPACING='0' WIDTH=150></TD>";
 
 // ==================================
-// vï¿½hicules/matï¿½riel
+// véhicules/matériel
 // ==================================
 
 if (( $vehicules == 1 or  $materiel == 1 ) and ( check_rights($_SESSION['id'], 42) )) {
@@ -158,7 +158,7 @@ echo "
 if ( $disponibilites == 1) {
 	if ( check_rights($_SESSION['id'], 38) or check_rights($_SESSION['id'], 11)) {
 	echo "
-	<TR><TD CLASS='MenuRub'>Disponibilit&eacutes;s</TD></TR>
+	<TR><TD CLASS='MenuRub'>Disponibilit&eacute;s</TD></TR>
 	<TR><TD class='charte'></TD></TR>
 	<TR>
 	<TD CLASS='Menu' nowrap>";
@@ -190,8 +190,8 @@ if ( $gardes == 1 ) {
 
 	echo "<a href='tableau_garde.php' target='droite' class=s>Tableau</a>";
 	if ( $vehicules == 1 ) 
-	 echo " / <a href='grille_depart.php' target='droite' class=s>Grille d&eacute;part</a>";
-	echo "<BR><a href='bilan_garde.php' target='droite' class=s>R&eacute;partition</a> / 
+	 echo " / <a href='grille_depart.php' target='droite' class=s>Grille départ</a>";
+	echo "<BR><a href='bilan_garde.php' target='droite' class=s>Répartition</a> / 
 	<a href='garde_jour.php' target='droite' class=s>Garde jour</a>
 	</TD>
 	</TR>";
@@ -211,7 +211,7 @@ if (check_rights($_SESSION['id'], 27) and ( $evenements == 1 ) and
 	   <TD CLASS='Menu'>
 	   <a href='repo_events.php' target='droite' class=s>Graphiques</a>";
 	   if ( $SES_NOM == 'admin' ) {
-		   echo " / <a href='ChartDirector/phpdemo' target='_blank' class=s>Dï¿½mo</a>"; 
+		   echo " / <a href='ChartDirector/phpdemo' target='_blank' class=s>Démo</a>"; 
 	       echo "
 	       ";
 	   }
@@ -222,7 +222,7 @@ if (check_rights($_SESSION['id'], 27) and ( $evenements == 1 ) and
     	if ( @is_dir("./france_map_3.0")){
     		echo "<TR>
    			<TD CLASS='Menu'>
-   			<a href='france_map_3.0' target='droite' class=s title='Cartes de france de membres et des activitï¿½s'>
+   			<a href='france_map_3.0' target='droite' class=s title='Cartes de france de membres et des activités'>
 			   Cartes de France</a>
    			</TD>
    			</tr>";
@@ -251,7 +251,7 @@ echo "
 if ( check_rights($_SESSION['id'], 41) or 
 	(check_rights($_SESSION['id'], 45) and $_SESSION['SES_COMPANY'] > 0))
 if ( $evenements == 1 ){	
-	echo "<a href='evenement_choice.php' target='droite' class=s>Ev&egrave;nements</a> / ";
+	echo "<a href='evenement_choice.php' target='droite' class=s>&Eacute;v&eacute;nements</a> / ";
 	echo "<a href='calendar.php' target='droite' class=s title='Voir mon calendrier'>Calendrier</a><BR>";
 }
 if ( check_rights($_SESSION['id'], 44) ) {
@@ -267,41 +267,18 @@ if ( check_rights($_SESSION['id'], 44) ) {
 		else $loc=$parent;
 	}
 	else $loc=$section;
-	$tit="Voir documents attach&eacute;s &agrave; mon ".$niv3;
+	$tit="Voir documents attachés à mon ".$niv3;
 	
     echo "<a href='upd_section.php?S_ID=".$loc."#documents' target=\"droite\" class=s 
 			title=\"".$tit."\">Documents</a>";
 }
 echo "</TD>
-</TR>";
-
-
-// ==================================
-//Comptabilitï¿½
-// ==================================
-
-echo "
-<TR><TD CLASS='MenuRub'>Comptabilit&eacute;</TD></TR>
-<TR><TD class='charte'></TD></TR>
-<TR>
-<TD CLASS='Menu'>";
-if ( check_rights($_SESSION['id'], 41) or 
-	(check_rights($_SESSION['id'], 45) and $_SESSION['SES_COMPANY'] > 0))
-if ( $evenements == 1 ){	
-	echo "<a href='devis.php' target='droite' class=s>Devis</a> / ";
-}
-echo "</TD>
-</TR>";
-
-// ==================================
-// Sessions
-// ==================================
-
-echo "<TR><TD CLASS='MenuRub'>Session</TD></TR>
+</TR>
+<TR><TD CLASS='MenuRub'>Session</TD></TR>
 <TR><TD class='charte'></TD></TR>
 <TR>
 <TD CLASS='Menu'>
-<a href='deconnexion.php' target='droite' class=s title=\"se d&eacute;connecter de l'application\">D&eacute;connexion</a>";
+<a href='deconnexion.php' target='droite' class=s title=\"se déconnecter de l'application\">D&eacute;connexion</a>";
 if ( check_rights($_SESSION['id'], 20) ) { 
 	echo " / <a href='audit.php' target=\"droite\" class=s title=\"Voir l'historique des connexions\">Audit</a>";
 }
@@ -318,12 +295,12 @@ if ( $V > 4 ) $cnt="<div id='counter'></div>";
 else $cnt="Online";
 
 echo "<a href='chat.php' target='droite' class=s 
-	title=\"Communication par messagerie instantann&eacute;e avec les autres personnes connect&eacute;es\">".$cnt."</a>";
+	title=\"Communication par messagerie instantanée avec les autres personnes connectées\">".$cnt."</a>";
 }
 else echo "<br>";
 
 if ( @is_dir("./spgm") and check_rights($_SESSION['id'], 44) ) {
-    echo "<a href='spgm/index.php' target='droite' class=s 
+	echo "<a href='spgm/index.php' target='droite' class=s 
 	title=\"Album photos\">Album photos</a><br>";
 }
 
@@ -340,7 +317,7 @@ echo "</TD>
 </TR>";
 
 // ==================================
-// paramï¿½trage
+// paramétrage
 // ==================================
 if ($competences == 1 or $evenements == 1 or $materiel == 1)
  if ( check_rights($_SESSION['id'], 9)  or  check_rights($_SESSION['id'], 18)) {
@@ -366,10 +343,6 @@ if ($competences == 1 or $evenements == 1 or $materiel == 1)
 	 }
 	 echo " / ";
 	 echo "<a href='prestation.php' target=\"droite\">Prestations</a>";
-         echo " / ";
-         echo "<a href='type_evenement.php' target=\"droite\">Type &eacute;v&egrave;nement</a>";
-         echo " / ";
-         echo "<a href='type_agrement.php' target=\"droite\">Type agr&eacute;ment</a>";
 	 echo "</TD></TR>";
 }
 
@@ -389,7 +362,7 @@ if (( check_rights($_SESSION['id'], 14) )
 	 if ( check_rights($_SESSION['id'], 14) )
 	 	echo "<a href='configuration.php' target=\"droite\" class=s>Configuration</a> / <a href='restore.php?file=' target=\"droite\" class=s>Backup</a><BR>";
 	 if (( check_rights($_SESSION['id'], 9) ) or ( check_rights($_SESSION['id'], 25) ))
-	 	echo "<a href='habilitations.php' target=\"droite\" class=s title='Voir les permissions pqr groupe ou par rï¿½le'>Habilitations</a> / ";
+	 	echo "<a href='habilitations.php' target=\"droite\" class=s title='Voir les permissions pqr groupe ou par rôle'>Habilitations</a> / ";
 	 	echo "<a href='change_password.php' target=\"droite\" class=s title='Modifier les mots de passe du personnel'>Passwords</a><BR>";
 	 echo "</TD>
 	 <TR><TD class='charte'></TD></TR>
