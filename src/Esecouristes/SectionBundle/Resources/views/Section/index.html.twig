@@ -1,18 +1,19 @@
-{# src /Esecouristes/SectionBundle/Ressources/views/Section/index.html.twig #}
+{# src/Esecouristes/SectionBundle/Resources/views/Blog/index.html.twig #}
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Bienvenue sur ma première page avec le Site du Zéro !</title>
-  </head>
-  <body>
-    <h1>Hello World !</h1>
+{% extends "EsecouristesSectionBundle::layout.html.twig" %}
 
-    <p>
-      Le Hello World est un grand classique en programmation.
-      Il signifie énormément, car cela veut dire que vous avez
-      réussi à exécuter le programme pour accomplir une tâche simple :
-      afficher ce hello world !
-    </p>
-  </body>
-</html>
+{% block title %}{{ parent() }} - Index{% endblock %}
+
+{% block esecouristessection_body %}
+    <h2>Liste des sections</h2>
+    
+    <ul>
+      {%for section in sections %}
+            <li>
+              <a href="{{ path('esecouristessection_voir', {'id' : section.id}) }}>{{ section.titre }}</a>
+            </li>
+      {% else %}
+            <li>Pas (encore !) de sections</li>
+      {% endfor %}
+    </ul>
+{% endblock %}

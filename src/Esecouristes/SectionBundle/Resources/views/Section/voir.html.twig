@@ -1,0 +1,30 @@
+{# src/Esecouristes/SectionBundle/Resources/view/Section/voir.html.twig #}
+
+{% extends "EsecouristesSectionBundle::layout.html.twig" %}
+
+{% block title %}
+    Affichage d'une section - {{ parent() }}
+{% endblock %}
+    
+{% block esecouristessection_body %}
+    <h2>{{ section.titre }}</h2>
+  <div class="well">
+    {{ section.contenu }}
+  </div>
+
+  <p>
+    <a href="{{ path('esecouristessection_accueil') }}" class="btn">
+      <i class="icon-chevron-left"></i>
+      Retour à la liste
+    </a>
+    <a href="{{ path('esecouristessection_modifier', {'id': section.id}) }}" class="btn">
+      <i class="icon-edit"></i>
+      Modifier la section
+    </a>
+    <a href="{{ path('esecouristessection_supprimer', {'id': section.id}) }}" class="btn">
+      <i class="icon-trash"></i>
+      Supprimer la section
+    </a>
+  </p>
+
+{% endblock %}  

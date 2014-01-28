@@ -1,0 +1,24 @@
+{# src /Esecouristes/SectionBundle/Ressources/views/Section/modifier.html.twig #}
+
+{% extends "EsecouristesSectionBundle::layout.html.twig" %}
+
+{% block title %}
+    Modifier une section - {{ parent() }}
+{% endblock %}
+    
+{% block esecouristessection_body %}
+    <h2> Modifier une section </h2>
+    
+    {% include "EsecouristesSectionBundle:Section:formulaire.html.twig" %}
+    
+    <p>
+        Vous modifiez une section existante
+    </p>
+    
+    <p>
+        <a href="{{ path('esecouristessection_voir', {'id': section.id}) }}" class="btn">
+            <i class="icon-chevron-left"></i>
+            Retour à la section
+        </a>
+    </p>
+{% endblock %}

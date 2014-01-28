@@ -1,3 +1,25 @@
-HelloTheWorld:
-    path:     /hello-world
-    defaults: { _controller: EsecouristesSectionBundle:Section:index }
+# src/Esecouristes/SectionBundle/Resources/config/routing.yml
+
+esecouristessection_accueil:
+    path:      /
+    defaults:  { _controller: EsecouristesSectionBundle:Section:index }
+    
+esecouristessection_voir:
+    path:      /section/{id}
+    defaults:  { _controller: EsecouristesSectionBundle:Section:voir }
+    
+esecouristessection_ajouter:
+    path:      /ajouter
+    defaults:  { _controller: EsecouristesSectionBundle:Section:ajouter }
+    
+esecouristessection_modifier:
+    path:     /modifier/{id}
+    defaults: {_controller: EsecouristesSectionBundle:Section:modifier }
+    requirements: 
+      id:     \d+
+    
+esecouristessection_supprimer:
+    path:     /supprimer/{id}
+    defaults: {_controller: EsecouristesSectionBundle:Section:supprimer }
+    requirements:
+      id:     \d+
