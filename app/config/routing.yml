@@ -1,0 +1,4 @@
+esecouristes_section:
+    resource: "@EsecouristesSectionBundle/Resources/config/routing.yml"
+    prefix:   /
+

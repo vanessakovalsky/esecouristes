@@ -1,0 +1,7 @@
+parameters:
+#    esecouristes_section.example.class: Esecouristes\SectionBundle\Example
+
+services:
+#    esecouristes_section.example:
+#        class: %esecouristes_section.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
