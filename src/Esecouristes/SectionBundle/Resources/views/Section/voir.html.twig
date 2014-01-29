@@ -7,11 +7,12 @@
 {% endblock %}
     
 {% block esecouristessection_body %}
-    <h2>{{ section.titre }}</h2>
+    <h2>{{ section.nom }}</h2>
   <div class="well">
-    {{ section.contenu }}
+    {{ section.nomLong }}
   </div>
 
+    
   <p>
     <a href="{{ path('esecouristessection_accueil') }}" class="btn">
       <i class="icon-chevron-left"></i>

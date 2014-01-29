@@ -8,9 +8,9 @@
     <h2>Liste des sections</h2>
     
     <ul>
-      {%for section in sections %}
+      {%for section in listeSections %}
             <li>
-              <a href="{{ path('esecouristessection_voir', {'id' : section.id}) }}>{{ section.titre }}</a>
+              <a href="{{ path('esecouristessection_voir', {'id' : section.id}) }}">{{ section.nom }}</a>
             </li>
       {% else %}
             <li>Pas (encore !) de sections</li>
