@@ -23,7 +23,16 @@
           <h3>Les sections</h3>
           <ul class="nav nav-pills nav-stacked">
             <li><a href="{{ path('esecouristessection_accueil') }}">Liste des sections</a></li>
-            <li><a href="{{ path('esecouristessection_ajouter') }}">Ajouter une section</a></li>
+            
+            {# Affichage du lien d'ajout de section uniquement aux administrateurs #}
+            {% if is_granted('ROLE_ADMIN') %}
+              <li><a href="{{ path('esecouristessection_ajouter') }}">Ajouter une section</a></li>
+            {% endif %}
+            
+          </ul>
+          <h3>Session</h3>
+          <ul class="nav nav-pills nav-stacked">
+			<li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
           </ul>
                     
         </div>
