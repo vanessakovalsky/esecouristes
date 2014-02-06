@@ -6,6 +6,7 @@ namespace Esecouristes\SectionBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 //On ajoute le use pour récupérer l'entité
 use Esecouristes\SectionBundle\Entity\Section;
@@ -41,10 +42,13 @@ class SectionController extends Controller
       'liste_sectionAgrements' => $liste_sectionAgrements));
   }
   
+  /**
+   * @Secure(roles="ROLE_ADMIN")
+   */
   public function ajouterAction()
   {
-      
-        // La gestion d'un formulaire est particulière, mais l'idée est la suivante :
+        
+    // La gestion d'un formulaire est particulière, mais l'idée est la suivante :
     
     if( $this->get('request')->getMethod() == 'POST' )
     {
@@ -59,6 +63,9 @@ class SectionController extends Controller
     return $this->render('EsecouristesSectionBundle:Section:ajouter.html.twig');
   }
   
+  /**
+   * @Secure(roles="ROLE_ADMIN")
+   */
   public function modifierAction(Section $section)
   {
       // On récupère l'Entity Manager
@@ -72,6 +79,9 @@ class SectionController extends Controller
       return $this->render('EsecouristesSectionBundle:Section:modifier.html.twig', array('section' => $section,));
   }
   
+  /**
+   * @Secure(roles="ROLE_ADMIN")
+   */
   public function supprimerAction(Section $section)
   {
       // On récupère l'Entity Manager
