@@ -47,11 +47,12 @@ class SectionController extends Controller
    */
   public function ajouterAction()
   {
-      // On crée l'objet section  
-      $section = new Section();
-      
-      //On crée le formulaire à partir de la méthode formbuilder
-      $formBuilder = $this->createFormBuilder($section);
+        
+    // La gestion d'un formulaire est particulière, mais l'idée est la suivante :
+    
+    if( $this->get('request')->getMethod() == 'POST' )
+    {
+      // Ici, on s'occupera de la création et de la gestion du formulaire
       
       // ON ajoute les champs de l'entité
       $formBuilder
