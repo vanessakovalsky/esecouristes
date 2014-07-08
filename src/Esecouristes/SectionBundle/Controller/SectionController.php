@@ -47,20 +47,54 @@ class SectionController extends Controller
    */
   public function ajouterAction()
   {
-        
-    // La gestion d'un formulaire est particulière, mais l'idée est la suivante :
-    
-    if( $this->get('request')->getMethod() == 'POST' )
-    {
-      // Ici, on s'occupera de la création et de la gestion du formulaire
+      // On crée l'objet section  
+      $section = new Section();
       
-      $this->get('session')->getFlashBag()->add('notice', 'Section bien enregistré');
-    
-      // Puis on redirige vers la page de visualisation de cet article
-      return $this->redirect( $this->generateUrl('esecouristessection_voir', array('id' => 1)) );
-    }
-    // Si on n'est pas en POST, alors on affiche le formulaire
-    return $this->render('EsecouristesSectionBundle:Section:ajouter.html.twig');
+      //On crée le formulaire à partir de la méthode formbuilder
+      $formBuilder = $this->createFormBuilder($section);
+      
+      // ON ajoute les champs de l'entité
+      $formBuilder
+              ->add('nom',              'text')
+              ->add('nomLong',          'text',     array('required' => false))
+              ->add('adresse',          'text')
+              ->add('codePostal',       'number')
+              ->add('ville',            'text')
+              ->add('cedex',            'number',   array('required' => false))
+              ->add('telephone',        'number')
+              ->add('portableUrgence',  'number')
+              ->add('fax',              'number',   array('required' => false))
+              ->add('email',            'email')
+              ->add('emailSecretariat', 'email',    array('required' => false))
+              ->add('siteWeb',          'url',      array('required' => false));
+      //On génère le formulaire
+      $form = $formBuilder->getForm();
+      
+      // ON récupère la requete
+      $request = $this->get('request');
+      
+       //On vérifie que la requete est de type POST
+      if ($request->getMethod() == 'POST') {
+          // On fait le lien Requete <-> Formulaire
+          // La variable $section contient celle envoyé par le formulaire
+          $form->bind($request);
+          
+          //On vérifie que les données entrées sont valide
+          if ($form->isValid()) {
+              //On enregistre en bdd notre section
+              $em = $this->getDoctrine()->getManager();
+              $em->persist($section);
+              $em->flush();
+          //On redirige vers la visualisation de la section
+          return $this->redirect($this->generateUrl('esecouristessection_voir', array('id' => $section->getId())));
+              
+          }
+      }
+      
+      //On passe la méthode CreateView() du formulaire à la vue afin qu'elle puisse afficher le formulaire
+      return $this->render('EsecouristesSectionBundle:Section:ajouter.html.twig', array(
+          'form' => $form->createView(),
+      ));
   }
   
   /**
@@ -75,6 +109,47 @@ class SectionController extends Controller
       // On récupère l'entité correspondant à l'id
       $section = $em->getRepository('EsecouristesSectionBundle:Section')
                     ->find($section->getId());
+      
+            //On crée le formulaire à partir de la méthode formbuilder
+      $formBuilder = $this->createFormBuilder($section);
+      
+      // ON ajoute les champs de l'entité
+      $formBuilder
+              ->add('nom',              'text')
+              ->add('nomLong',          'text',     array('required' => false))
+              ->add('adresse',          'text')
+              ->add('codePostal',       'number')
+              ->add('ville',            'text')
+              ->add('cedex',            'number',   array('required' => false))
+              ->add('telephone',        'number')
+              ->add('portableUrgence',  'number')
+              ->add('fax',              'number',   array('required' => false))
+              ->add('email',            'email')
+              ->add('emailSecretariat', 'email',    array('required' => false))
+              ->add('siteWeb',          'url',      array('required' => false));
+      //On génère le formulaire
+      $form = $formBuilder->getForm();
+      
+      // ON récupère la requete
+      $request = $this->get('request');
+      
+       //On vérifie que la requete est de type POST
+      if ($request->getMethod() == 'POST') {
+          // On fait le lien Requete <-> Formulaire
+          // La variable $section contient celle envoyé par le formulaire
+          $form->bind($request);
+          
+          //On vérifie que les données entrées sont valide
+          if ($form->isValid()) {
+              //On enregistre en bdd notre section
+              $em = $this->getDoctrine()->getManager();
+              $em->persist($section);
+              $em->flush();
+          //On redirige vers la visualisation de la section
+          return $this->redirect($this->generateUrl('esecouristessection_voir', array('id' => $section->getId())));
+              
+          }
+      }
       
       return $this->render('EsecouristesSectionBundle:Section:modifier.html.twig', array('section' => $section,));
   }

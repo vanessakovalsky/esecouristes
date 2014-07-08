@@ -9,8 +9,19 @@
 {% block esecouristessection_body %}
     <h2>{{ section.nom }}</h2>
   <div class="well">
-    {{ section.nomLong }}
-  </div>
+    Nom long : {{ section.nomLong }}<br />
+    Section parent {{section.sectionParent}}<br />
+    Adresse : {{section.adresse}}<br />
+    Code postal {{section.codePostal}}<br />
+    Ville : {{section.ville}}<br />
+    Cedex : {{section.cedex}}<br />
+    Téléphone : {{section.telephone}}<br />
+    Portable : {{section.portableUrgence}}<br />
+    Fax : {{section.fax}}<br />
+    Email : {{section.email}}<br />
+    Email secrétariat : {{section.emailSecretariat}}<br />
+    Site web : {{section.siteWeb}}<br />
+      </div>
 
     
   <p>
